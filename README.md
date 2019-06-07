@@ -18,14 +18,14 @@ The Resolute app is a solution to task management for the new developer planning
 4. Semantic UI
 5. JSON Server
 
-### Features
+### Features:
 User Authentication<br>
 Pomodoro Timer<br>
 Task List w/ Full CRUD<br>
 User Profiles w/ Optional Image Upload<br>
 Mobile First<br>
 
-### Stretch Goals
+### Stretch Goals:
 Github Sign-in<br>
 Integration with Task List and Github Projects (Is it even possible? Who knows?)<br>
 Tasks will appear with the timer so the user knows what they’re working on at the time<br>
