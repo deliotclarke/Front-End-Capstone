@@ -1,8 +1,6 @@
 import React from 'react';
 import NavBar from './NavBar'
-import logo from './logo.svg';
 import './App.css';
-import Button from './Btn.js'
 
 
 function App() {
@@ -11,7 +9,6 @@ function App() {
       <div className="App">
         <NavBar />
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
           <p>
             Edit <code>src/App.js</code> and save to reload.
         </p>
@@ -24,8 +21,6 @@ function App() {
             Learn React
         </a>
         </header>
-        <Button />
-        <button className="ui button" role="button">Btn with Semantic-UI</button>
       </div>
     </>
   );

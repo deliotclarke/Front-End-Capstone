@@ -1,5 +1,6 @@
 import React from 'react';
 import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
+import { fontFamily } from './styles'
 
 export default class Example extends React.Component {
 
@@ -24,21 +25,21 @@ export default class Example extends React.Component {
   render() {
     return (
       <div>
-        <Navbar color="faded" light>
-          <NavbarBrand href="/" className="mr-auto">reactstrap</NavbarBrand>
+        <Navbar color="faded" style={{ backgroundColor: "#488C66" }} light>
           <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
+          <NavbarBrand href="/" style={{ color: '#F7F6F6' }}>resolute.</NavbarBrand>
           <Collapse isOpen={!this.state.collapsed} navbar>
             <Nav navbar>
               <NavItem>
-                <NavLink style={this.greenFont} href="/components/">Components</NavLink>
+                <NavLink href="/components/" style={{ color: '#F7F6F6' }}>GitHub</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="https://github.com/reactstrap/reactstrap">GitHub</NavLink>
+                <NavLink href="https://github.com/reactstrap/reactstrap" style={{ color: '#F7F6F6' }}>GitHub</NavLink>
               </NavItem>
             </Nav>
           </Collapse>
         </Navbar>
-      </div>
+      </div >
     );
   }
 }
