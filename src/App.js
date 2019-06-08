@@ -1,29 +1,38 @@
-import React from 'react';
-import NavBar from './NavBar'
-import './App.css';
+import React, { Component } from 'react'
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
+import { getUserFromLocalStorage, logout } from './auth/userManager'
+import './App.css'
 
+import Login from './components/Login'
+import Register from './components/Register'
+import AppViews from './components/AppViews'
+import NavBar from './components/NavBar'
 
-function App() {
-  return (
-    <>
+class App extends Component {
+  state = {
+    user: getUserFromLocalStorage()
+  }
+
+  render() {
+    return (
       <div className="App">
-        <NavBar />
-        <header className="App-header">
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-        </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-        </a>
-        </header>
+        <Router>
+          <Route path="/login" render={(props) => <Login {...props} onLogin={(user) => this.setState({ user: user })} />} />
+          <Route path="/register" render={(props) => <Register {...props} onRegister={(user) => this.setState({ user: user })} />} />
+          <Route exact path="/" render={(props) => {
+            return this.state.user ? (
+              <>
+                <NavBar {...props} user={this.state.user} onLogout={logout} />
+                <AppViews {...props} user={this.state.user} />
+              </>
+            ) : (
+                <Redirect to="/login" />
+              )
+          }} />
+        </Router>
       </div>
-    </>
-  );
+    );
+  }
 }
 
 export default App;
