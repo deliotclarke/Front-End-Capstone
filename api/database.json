@@ -1,0 +1,18 @@
+{
+  "users": [
+    {
+      "name": "User Zero",
+      "username": "user0",
+      "email": "user0@email.com",
+      "password": "",
+      "id": "9v5xQ2XvRzNT3ESuq96DmDai1os2"
+    },
+    {
+      "name": "User One",
+      "username": "user1",
+      "email": "user1@yup.com",
+      "password": "",
+      "id": "3t7NEduEvtOzFK4VTCPd5I0Hlb53"
+    }
+  ]
+}

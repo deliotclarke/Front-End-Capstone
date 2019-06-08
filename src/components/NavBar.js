@@ -1,11 +1,11 @@
 import React from 'react';
 import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
-import { fontFamily } from './styles'
 
 export default class Example extends React.Component {
 
-  greenFont = {
-    "color": "#3F7255"
+  logout = () => {
+    this.props.onLogout();
+    this.props.history.push('/login');
   }
 
   constructor(props) {
@@ -26,15 +26,15 @@ export default class Example extends React.Component {
     return (
       <div>
         <Navbar color="faded" style={{ backgroundColor: "#488C66" }} light>
-          <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
+          <NavbarToggler onClick={this.toggleNavbar} className="mr-2" style={{ outline: "none" }} />
           <NavbarBrand href="/" style={{ color: '#F7F6F6' }}>resolute.</NavbarBrand>
           <Collapse isOpen={!this.state.collapsed} navbar>
             <Nav navbar>
               <NavItem>
-                <NavLink href="/components/" style={{ color: '#F7F6F6' }}>GitHub</NavLink>
+                <NavLink href="/" style={{ color: '#F7F6F6' }}>home</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="https://github.com/reactstrap/reactstrap" style={{ color: '#F7F6F6' }}>GitHub</NavLink>
+                <NavLink onClick={() => this.logout()} style={{ color: '#F7F6F6' }}>logout</NavLink>
               </NavItem>
             </Nav>
           </Collapse>
