@@ -88,7 +88,3 @@ export const loginWithFirebase = (email, password) => {
 const setUserInLocalStorage = (user) => {
   localStorage.setItem('user', JSON.stringify(user));
 }
-
-export const logout = () => {
-  localStorage.removeItem('user');
-}
