@@ -1,12 +1,9 @@
 import React from 'react';
+import { withRouter, NavLink as RRNavLink } from 'react-router-dom'
 import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
 
-export default class Example extends React.Component {
 
-  logout = () => {
-    this.props.onLogout();
-    this.props.history.push('/login');
-  }
+class NavBar extends React.Component {
 
   constructor(props) {
     super(props);
@@ -31,10 +28,19 @@ export default class Example extends React.Component {
           <Collapse isOpen={!this.state.collapsed} navbar>
             <Nav navbar>
               <NavItem>
-                <NavLink href="/" style={{ color: '#F7F6F6' }}>home</NavLink>
+                <NavLink tag={RRNavLink} to="/" style={{ color: '#F7F6F6' }} onClick={this.toggleNavbar} >how to</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink onClick={() => this.logout()} style={{ color: '#F7F6F6' }}>logout</NavLink>
+                <NavLink tag={RRNavLink} to="/tasks" style={{ color: '#F7F6F6' }} onClick={this.toggleNavbar} >tasks</NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink tag={RRNavLink} to="/timer" style={{ color: '#F7F6F6' }} onClick={this.toggleNavbar} >timer</NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink tag={RRNavLink} to="/profile" style={{ color: '#F7F6F6' }} onClick={this.toggleNavbar} >profile</NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink onClick={() => this.props.onLogout()} style={{ color: '#F7F6F6' }} >logout</NavLink>
               </NavItem>
             </Nav>
           </Collapse>
@@ -43,3 +49,5 @@ export default class Example extends React.Component {
     );
   }
 }
+
+export default withRouter(NavBar)

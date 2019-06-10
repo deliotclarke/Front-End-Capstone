@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
-import { getUserFromLocalStorage, logout } from './auth/userManager'
+import { getUserFromLocalStorage } from './auth/userManager'
 import './App.css'
 
 import Login from './components/Login'
@@ -13,16 +13,21 @@ class App extends Component {
     user: getUserFromLocalStorage()
   }
 
+  logout = () => {
+    localStorage.removeItem('user');
+    this.setState({ user: "" })
+  }
+
   render() {
     return (
       <div className="App">
         <Router>
           <Route path="/login" render={(props) => <Login {...props} onLogin={(user) => this.setState({ user: user })} />} />
           <Route path="/register" render={(props) => <Register {...props} onRegister={(user) => this.setState({ user: user })} />} />
-          <Route exact path="/" render={(props) => {
+          <Route path="/" render={(props) => {
             return this.state.user ? (
               <>
-                <NavBar {...props} user={this.state.user} onLogout={logout} />
+                <NavBar {...props} user={this.state.user} onLogout={this.logout} />
                 <AppViews {...props} user={this.state.user} />
               </>
             ) : (
