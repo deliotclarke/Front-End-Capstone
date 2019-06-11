@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Route } from 'react-router-dom'
 
+import TaskAdd from './Tasks/TaskAddButton'
 import TaskViews from './Tasks/TaskViews'
 import TaskNav from './Tasks/TaskNav'
 
@@ -26,6 +27,7 @@ class AppViews extends Component {
         <Route path="/tasks" render={(props) => {
           return (
             <>
+              <TaskAdd />
               <TaskViews />
               <TaskNav />
             </>
