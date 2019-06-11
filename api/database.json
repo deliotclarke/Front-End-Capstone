@@ -14,5 +14,67 @@
       "password": "",
       "id": "3t7NEduEvtOzFK4VTCPd5I0Hlb53"
     }
+  ],
+  "tasks": [
+    {
+      "id": 1,
+      "uid": "9v5xQ2XvRzNT3ESuq96DmDai1os2",
+      "title": "build task add form",
+      "notes": "already have a task add button, and a modal that shows up, now i just have to populate a working form to enter tasks in",
+      "timestamp": "",
+      "category": "todo",
+      "showOnTimer": false,
+      "completed": false
+    },
+    {
+      "userId": "9v5xQ2XvRzNT3ESuq96DmDai1os2",
+      "title": "add it",
+      "notes": "do it",
+      "timestamp": 1560272686029,
+      "category": "done",
+      "showOnTimer": false,
+      "completed": false,
+      "id": 2
+    },
+    {
+      "userId": "9v5xQ2XvRzNT3ESuq96DmDai1os2",
+      "title": "putting tasks on the dom",
+      "notes": "that's pretty much it",
+      "timestamp": 1560275132577,
+      "category": "inprogress",
+      "showOnTimer": false,
+      "completed": false,
+      "id": 3
+    },
+    {
+      "userId": "9v5xQ2XvRzNT3ESuq96DmDai1os2",
+      "title": "category logic",
+      "notes": "working on saving the category with state, but also working out the logic of showing it on the timer and whether it's completed by the category it's added under.",
+      "timestamp": 1560276184344,
+      "category": "inprogress",
+      "showOnTimer": true,
+      "completed": false,
+      "id": 4
+    },
+    {
+      "userId": "9v5xQ2XvRzNT3ESuq96DmDai1os2",
+      "title": "find out what bind() is",
+      "notes": "i have no idea whether i'm about to use bind correctly, and if i don't i need to go axxxxxe someboooodyyyyyyy",
+      "timestamp": 1560276585453,
+      "category": "todo",
+      "showOnTimer": false,
+      "completed": false,
+      "id": 5
+    },
+    {
+      "userId": "9v5xQ2XvRzNT3ESuq96DmDai1os2",
+      "title": "feed the dog",
+      "notes": "his name is ted",
+      "timestamp": 1560281365955,
+      "category": "todo",
+      "showOnTimer": false,
+      "completed": false,
+      "id": 6
+    }
   ]
 }

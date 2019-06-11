@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { Route } from 'react-router-dom'
 
+import TaskManager from '../modules/TaskManager'
+import TaskAdd from './Tasks/TaskAddButton'
 import TaskViews from './Tasks/TaskViews'
 import TaskNav from './Tasks/TaskNav'
 
@@ -10,10 +12,29 @@ import Profile from './Profile/UserProfile'
 
 class AppViews extends Component {
 
+
   state = {
-    tasks: "",
-    timer: "",
+    tasks: [],
+    timer: [],
     user: this.props.user
+  }
+
+
+  addTask = (taskObj) => {
+    TaskManager.addTask(taskObj)
+      .then(() => TaskManager.getAll())
+      .then(tasks => {
+        this.setState({ tasks: tasks })
+      })
+      .then(() => this.props.history.push('/tasks/todo'))
+  }
+
+  componentDidMount() {
+    const newState = {}
+
+    TaskManager.getAll()
+      .then(tasks => newState.tasks = tasks)
+      .then(() => this.setState(newState))
   }
 
   render() {
@@ -26,7 +47,8 @@ class AppViews extends Component {
         <Route path="/tasks" render={(props) => {
           return (
             <>
-              <TaskViews />
+              <TaskAdd {...props} user={this.props.user} addTask={this.addTask} />
+              <TaskViews {...props} user={this.props.user} tasks={this.state.tasks} />
               <TaskNav />
             </>
           )

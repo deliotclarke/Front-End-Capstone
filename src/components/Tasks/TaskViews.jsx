@@ -7,33 +7,41 @@ import TasksDone from './TasksDone'
 
 export default class TaskViews extends Component {
 
-  state = {
-    tasks: this.props.tasks,
-    user: this.props.user
-  }
 
   render() {
 
     return (
       <>
         < Route path="/tasks/todo" render={(props) => {
+
+          let toDoTasks = this.props.tasks.filter(task => {
+            return task.category === "todo"
+          })
           return (
             <>
-              <TasksToDo {...props} />
+              <TasksToDo {...this.props} {...props} tasks={toDoTasks} />
             </>
           )
         }} />
         < Route path="/tasks/inprogress" render={(props) => {
+
+          let inProgressTasks = this.props.tasks.filter(task => {
+            return task.category === "inprogress"
+          })
           return (
             <>
-              <TasksInProgress {...props} />
+              <TasksInProgress {...this.props} {...props} tasks={inProgressTasks} />
             </>
           )
         }} />
         < Route path="/tasks/done" render={(props) => {
+
+          let doneTasks = this.props.tasks.filter(task => {
+            return task.category === "done"
+          })
           return (
             <>
-              <TasksDone {...props} />
+              <TasksDone {...this.props} {...props} tasks={doneTasks} />
             </>
           )
         }} />

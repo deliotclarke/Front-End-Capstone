@@ -1,18 +1,27 @@
 import React, { Component } from 'react'
+import { Container, CardColumns } from 'reactstrap'
+import TaskCard from './TaskCard'
 
 
 export default class TasksToDo extends Component {
 
-  state = {
-    tasks: this.props.tasks,
-    user: this.props.user
-  }
 
   render() {
 
+    // need collapse on each card to display info to be able to edit card!
+
     return (
       <>
-        <h1>Tasks To Do</h1>
+        <Container>
+          <CardColumns>
+            <h2 className="mt-4" style={{ color: "#3F7255" }}>To Do</h2>
+            {
+              this.props.tasks.map(task =>
+                <TaskCard key={task.id} task={task} {...this.props} />
+              )
+            }
+          </CardColumns>
+        </Container>
       </>
     )
   }
