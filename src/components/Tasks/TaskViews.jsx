@@ -17,6 +17,11 @@ export default class TaskViews extends Component {
     return (
       <>
         < Route path="/tasks/todo" render={(props) => {
+
+          // let toDoTasks = this.props.task.find(task =>
+          //   task.category === "todo")
+          //  toDoTasks={toDoTasks}
+
           return (
             <>
               <TasksToDo {...props} />

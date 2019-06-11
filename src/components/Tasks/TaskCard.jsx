@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
-import TaskCard from './TaskCard'
 
 
-export default class TasksToDo extends Component {
+export default class TaskCard extends Component {
 
   state = {
     tasks: this.props.tasks,
@@ -13,7 +12,7 @@ export default class TasksToDo extends Component {
 
     return (
       <>
-        <TaskCard />
+        {/* reactstrap card */}
       </>
     )
   }

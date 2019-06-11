@@ -14,5 +14,17 @@
       "password": "",
       "id": "3t7NEduEvtOzFK4VTCPd5I0Hlb53"
     }
+  ],
+  "tasks": [
+    {
+      "id": 1,
+      "uid": "9v5xQ2XvRzNT3ESuq96DmDai1os2",
+      "title": "build task add form",
+      "notes": "already have a task add button, and a modal that shows up, now i just have to populate a working form to enter tasks in",
+      "timestamp": "",
+      "category": "todo",
+      "showOnTimer": false,
+      "completed": false
+    }
   ]
 }
