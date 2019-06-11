@@ -57,23 +57,24 @@ class TaskAdd extends Component {
         this.setState({ showOnTimer: true })
       } else {
         this.setState({ showOnTimer: false })
-
-        let date = new Date();
-        let newTimestamp = date.getTime();
-
-        const newTask = {
-          userId: this.props.user.id,
-          title: this.state.taskTitle,
-          notes: this.state.taskNotes,
-          timestamp: newTimestamp,
-          category: this.state.taskCategory,
-          showOnTimer: this.state.showOnTimer,
-          completed: false
-        }
-
-        console.log(newTask)
-        this.props.addTask(newTask);
       }
+
+      let date = new Date();
+      let newTimestamp = date.getTime();
+
+      const newTask = {
+        userId: this.props.user.id,
+        title: this.state.taskTitle,
+        notes: this.state.taskNotes,
+        timestamp: newTimestamp,
+        category: this.state.taskCategory,
+        showOnTimer: this.state.showOnTimer,
+        completed: false
+      }
+
+      console.log(newTask)
+      this.props.addTask(newTask);
+
     }
   }
 
