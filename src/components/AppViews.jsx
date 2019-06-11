@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import { withRouter } from 'react-router'
 import { Route } from 'react-router-dom'
 
-import TaskList from './Tasks/TaskList'
+import TaskViews from './Tasks/TaskViews'
+import TaskNav from './Tasks/TaskNav'
+
 import Timer from './Pomo/Timer'
 import Profile from './Profile/UserProfile'
 
@@ -22,8 +23,13 @@ class AppViews extends Component {
         <Route exact path="/" render={(props) => {
           return <h1>Welcome, {this.props.user.name}</h1>
         }} />
-        <Route exact path="/tasks" render={(props) => {
-          return <TaskList {...props} user={this.props.user} tasks={this.state.tasks} deleteTask={this.deleteTask} />
+        <Route path="/tasks" render={(props) => {
+          return (
+            <>
+              <TaskViews />
+              <TaskNav />
+            </>
+          )
         }} />
         <Route exact path="/timer" render={(props) => {
           return <Timer {...props} user={this.props.user} timer={this.state.timer} />
@@ -31,9 +37,10 @@ class AppViews extends Component {
         <Route exact path="/profile" render={(props) => {
           return <Profile {...props} user={this.props.user} />
         }} />
+
       </>
     )
   }
 }
 
-export default withRouter(AppViews)
+export default AppViews

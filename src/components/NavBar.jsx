@@ -1,5 +1,5 @@
 import React from 'react';
-import { withRouter, NavLink as RRNavLink } from 'react-router-dom'
+import { NavLink as RRNavLink } from 'react-router-dom'
 import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
 
 
@@ -50,4 +50,4 @@ class NavBar extends React.Component {
   }
 }
 
-export default withRouter(NavBar)
+export default NavBar
