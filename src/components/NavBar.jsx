@@ -31,7 +31,7 @@ class NavBar extends React.Component {
                 <NavLink tag={RRNavLink} to="/" style={{ color: '#F7F6F6' }} onClick={this.toggleNavbar} >how to</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink tag={RRNavLink} to="/tasks" style={{ color: '#F7F6F6' }} onClick={this.toggleNavbar} >tasks</NavLink>
+                <NavLink tag={RRNavLink} to="/tasks/todo" style={{ color: '#F7F6F6' }} onClick={this.toggleNavbar} >tasks</NavLink>
               </NavItem>
               <NavItem>
                 <NavLink tag={RRNavLink} to="/timer" style={{ color: '#F7F6F6' }} onClick={this.toggleNavbar} >timer</NavLink>
