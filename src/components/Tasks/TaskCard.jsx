@@ -1,18 +1,18 @@
 import React, { Component } from 'react'
+import { Card, CardTitle, CardText, Button } from 'reactstrap'
 
 
 export default class TaskCard extends Component {
 
-  state = {
-    tasks: this.props.tasks,
-    user: this.props.user
-  }
 
   render() {
 
     return (
       <>
-        {/* reactstrap card */}
+        <Card body>
+          <CardTitle>{this.props.task.title}</CardTitle>
+          <Button>Go somewhere</Button>
+        </Card>
       </>
     )
   }

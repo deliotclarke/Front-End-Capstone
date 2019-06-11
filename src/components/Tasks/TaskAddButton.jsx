@@ -10,7 +10,8 @@ import {
   Form,
   InputGroup,
   InputGroupAddon,
-  InputGroupText
+  InputGroupText,
+  Alert
 } from 'reactstrap';
 
 import { FaPlusSquare } from 'react-icons/fa';
@@ -23,16 +24,18 @@ class TaskAdd extends Component {
     this.state = {
       modal: false,
       backdrop: true,
+      visible: true,
       taskTitle: "",
       taskNotes: "",
       timestamp: "",
-      taskCategory: "",
+      taskCategory: "todo",
       showOnTimer: false,
       completed: false
     };
 
     this.createTaskObj = this.createTaskObj.bind(this);
     this.toggle = this.toggle.bind(this);
+    this.onDismiss = this.onDismiss.bind(this);
   }
 
 
@@ -42,22 +45,37 @@ class TaskAdd extends Component {
     }));
   }
 
+  onDismiss() {
+    this.setState({ visible: false });
+  }
 
   handleFieldChange = evt => {
     const stateToChange = {};
     stateToChange[evt.target.id] = evt.target.value;
     this.setState(stateToChange);
-  };
+  }
+
+  handleSelect = e => {
+    const stateToChange = {};
+    if (e.target.value === "inprogress") {
+      this.setState({ showOnTimer: true, completed: false })
+    } else if (e.target.value === "done") {
+      this.setState({ completed: true, showOnTimer: false })
+    } else {
+      this.setState({ showOnTimer: false, completed: false })
+    }
+    stateToChange[e.target.id] = e.target.value;
+    this.setState(stateToChange)
+  }
 
   createTaskObj() {
     if (this.state.taskTitle === "" || this.state.taskNotes === "" || this.state.taskCategory === "") {
-      alert("please complete form!")
+      return (
+        <Alert color="danger" isOpen={this.state.visible} toggle={this.onDismiss}>
+          Please complete form!
+      </Alert>
+      )
     } else {
-      if (this.state.taskCategory === "inprogress") {
-        this.setState({ showOnTimer: true })
-      } else {
-        this.setState({ showOnTimer: false })
-      }
 
       let date = new Date();
       let newTimestamp = date.getTime();
@@ -72,7 +90,7 @@ class TaskAdd extends Component {
         completed: false
       }
 
-      console.log(newTask)
+      this.toggle();
       this.props.addTask(newTask);
 
     }
@@ -83,8 +101,10 @@ class TaskAdd extends Component {
 
     return (
       <>
-        <Button className="mt-4 mr-4" style={{ backgroundColor: "#488C66", float: "right", border: "none" }}
-          onClick={this.toggle}><FaPlusSquare /></Button>
+        <div className="clear-fix">
+          <Button className="float-right mt-4 mr-4" style={{ backgroundColor: "#BF4D43", border: "none", zIndex: "99", position: "sticky", display: "inline" }}
+            onClick={this.toggle}><FaPlusSquare /></Button>
+        </div>
         <div>
           <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className} backdrop={this.state.backdrop}>
             <ModalHeader toggle={this.toggle}>Add Task</ModalHeader>
@@ -105,8 +125,8 @@ class TaskAdd extends Component {
                 </InputGroup>
 
                 <InputGroup className="mt-2">
-                  <Input type="select" name="category" id="taskCategory" onChange={this.handleFieldChange}>
-                    <option value="todo">To Do</option>
+                  <Input type="select" name="category" id="taskCategory" onChange={this.handleSelect}>
+                    <option value="todo" defaultValue>To Do</option>
                     <option value="inprogress">In Progress</option>
                     <option value="done">Done</option>
                   </Input>

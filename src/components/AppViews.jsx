@@ -12,13 +12,15 @@ import Profile from './Profile/UserProfile'
 
 class AppViews extends Component {
 
+
   state = {
     tasks: [],
     timer: [],
     user: this.props.user
   }
 
-  addTask(taskObj) {
+
+  addTask = (taskObj) => {
     TaskManager.addTask(taskObj)
       .then(() => TaskManager.getAll())
       .then(tasks => {
