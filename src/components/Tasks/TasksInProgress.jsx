@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 
-
-export default class TaskList extends Component {
+export default class TasksInProgress extends Component {
 
   state = {
     tasks: this.props.tasks,
@@ -12,7 +11,7 @@ export default class TaskList extends Component {
 
     return (
       <>
-        <h1>Tasks for: {this.state.user.name}</h1>
+        <h1>Tasks In Progress Hopefully</h1>
       </>
     )
   }
