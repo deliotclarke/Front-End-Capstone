@@ -1,10 +1,8 @@
 import React, { Component } from 'react'
 import { Route } from 'react-router-dom'
 
+import TaskViews from './Tasks/TaskViews'
 import TaskNav from './Tasks/TaskNav'
-import TasksToDo from './Tasks/TasksToDo'
-import TasksInProgress from './Tasks/TasksInProgress'
-import TasksDone from './Tasks/TasksDone'
 
 import Timer from './Pomo/Timer'
 import Profile from './Profile/UserProfile'
@@ -28,6 +26,7 @@ class AppViews extends Component {
         <Route path="/tasks" render={(props) => {
           return (
             <>
+              <TaskViews />
               <TaskNav />
             </>
           )
@@ -38,27 +37,7 @@ class AppViews extends Component {
         <Route exact path="/profile" render={(props) => {
           return <Profile {...props} user={this.props.user} />
         }} />
-        < Route path="/tasks/todo" render={(props) => {
-          return (
-            <>
-              <TasksToDo {...props} />
-            </>
-          )
-        }} />
-        < Route path="tasks/inprogress" render={(props) => {
-          return (
-            <>
-              <TasksInProgress {...props} />
-            </>
-          )
-        }} />
-        < Route path="tasks/done" render={(props) => {
-          return (
-            <>
-              <TasksDone {...props} />
-            </>
-          )
-        }} />
+
       </>
     )
   }
