@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { NavLink as RRNavLink } from 'react-router-dom'
 
 import {
   Button,
@@ -8,7 +7,6 @@ import {
   ModalBody,
   ModalFooter,
   Input,
-  Label,
   Form,
   InputGroup,
   InputGroupAddon,
@@ -33,7 +31,7 @@ class TaskAdd extends Component {
       completed: false
     };
 
-    this.changeCategory = this.changeCategory.bind(this);
+    this.createTaskObj = this.createTaskObj.bind(this);
     this.toggle = this.toggle.bind(this);
   }
 
@@ -44,16 +42,40 @@ class TaskAdd extends Component {
     }));
   }
 
-  changeCategory(e) {
-    let value = e.target.value;
-    this.setState({ taskCategory: value });
-  }
 
   handleFieldChange = evt => {
     const stateToChange = {};
     stateToChange[evt.target.id] = evt.target.value;
     this.setState(stateToChange);
   };
+
+  createTaskObj() {
+    if (this.state.taskTitle === "" || this.state.taskNotes === "" || this.state.taskCategory === "") {
+      alert("please complete form!")
+    } else {
+      if (this.state.taskCategory === "inprogress") {
+        this.setState({ showOnTimer: true })
+      } else {
+        this.setState({ showOnTimer: false })
+
+        let date = new Date();
+        let newTimestamp = date.getTime();
+
+        const newTask = {
+          userId: this.props.user.id,
+          title: this.state.taskTitle,
+          notes: this.state.taskNotes,
+          timestamp: newTimestamp,
+          category: this.state.taskCategory,
+          showOnTimer: this.state.showOnTimer,
+          completed: false
+        }
+
+        console.log(newTask)
+        this.props.addTask(newTask);
+      }
+    }
+  }
 
 
   render() {
@@ -94,8 +116,8 @@ class TaskAdd extends Component {
               </Form>
             </ModalBody>
             <ModalFooter>
-              <Button color="primary" onClick={this.toggle}>Do Something</Button>{' '}
-              <Button color="secondary" onClick={this.toggle}>Not That</Button>
+              <Button color="primary" onClick={this.createTaskObj}>Add Task</Button>{' '}
+              <Button color="secondary" onClick={() => { console.log(this.props.addTask) }}>Not That</Button>
               <Button color="danger" onClick={this.toggle}>Cancel</Button>
             </ModalFooter>
           </Modal>

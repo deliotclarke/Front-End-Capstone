@@ -18,6 +18,15 @@ class AppViews extends Component {
     user: this.props.user
   }
 
+  addTask(taskObj) {
+    TaskManager.addTask(taskObj)
+      .then(() => TaskManager.getAll())
+      .then(tasks => {
+        this.setState({ tasks: tasks })
+      })
+      .then(() => this.props.history.push('/tasks/todo'))
+  }
+
   componentDidMount() {
     const newState = {}
 
@@ -36,7 +45,7 @@ class AppViews extends Component {
         <Route path="/tasks" render={(props) => {
           return (
             <>
-              <TaskAdd {...props} user={this.props.user} />
+              <TaskAdd {...props} user={this.props.user} addTask={this.addTask} />
               <TaskViews {...props} user={this.props.user} tasks={this.state.tasks} />
               <TaskNav />
             </>
