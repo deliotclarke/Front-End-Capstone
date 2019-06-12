@@ -6,7 +6,8 @@ export default class TaskCard extends Component {
 
   state = {
     selected: false,
-    cardCategory: this.props.task.category
+    cardCategory: this.props.task.category,
+    editing: false
   }
 
   toggle = (task) => {
@@ -52,9 +53,14 @@ export default class TaskCard extends Component {
           buttonLabel = "To Do"
       }
 
+      //dynamic button factory makes buttons based on where the task is currently placed
       return (
         <>
-          <Button key={`${buttonValue}_Button_${this.props.task.id}`} size="sm" value={buttonValue} onClick={() => this.handlePatch(buttonValue, this.props.task)}>{buttonLabel}</Button>
+          <Button
+            key={`${buttonValue}_Button_${this.props.task.id}`}
+            size="sm"
+            value={buttonValue}
+            onClick={() => this.handlePatch(buttonValue, this.props.task)}>{buttonLabel}</Button>
         </>
       )
     })
