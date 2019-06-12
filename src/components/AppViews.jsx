@@ -44,6 +44,16 @@ class AppViews extends Component {
       })
   }
 
+  patchCategory = (taskObj, taskId) => {
+    let goto = taskObj.category
+    TaskManager.patchTask(taskObj, taskId)
+      .then(() => TaskManager.getAll())
+      .then(tasks => {
+        this.setState({ tasks: tasks })
+      })
+      .then(() => this.props.history.push(`/tasks/${goto}`))
+  }
+
 
   componentDidMount() {
     const newState = {}
@@ -68,7 +78,7 @@ class AppViews extends Component {
           return (
             <>
               <TaskAdd {...props} user={this.props.user} addTask={this.addTask} handleDelete={this.handleDelete} tasks={currentUserTasks} />
-              <TaskViews {...props} user={this.props.user} tasks={currentUserTasks} />
+              <TaskViews {...props} user={this.props.user} tasks={currentUserTasks} patchCategory={this.patchCategory} />
               <TaskNav />
             </>
           )

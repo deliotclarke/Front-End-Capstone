@@ -5,7 +5,8 @@ import { Card, CardTitle, CardText, CardBody, UncontrolledCollapse, Label, Butto
 export default class TaskCard extends Component {
 
   state = {
-    selected: false
+    selected: false,
+    cardCategory: this.props.task.category
   }
 
   toggle = (task) => {
@@ -20,11 +21,22 @@ export default class TaskCard extends Component {
     this.props.patchTask(newTaskValue, task.id)
   }
 
-  buttonFunction = (taskCategory) => {
+  handlePatch = (newCategory, task) => {
+
+    let newCategoryObj = {
+      category: newCategory
+    }
+
+    let taskId = task.id
+
+    this.props.patchCategory(newCategoryObj, taskId)
+  }
+
+  buttonFunction = (taskObj) => {
     let categoryArray = ["todo", "inprogress", "done"]
 
     let buttonArray = categoryArray.filter(category => {
-      return category !== taskCategory
+      return category !== taskObj.category
     })
 
     let myButtons = buttonArray.map(buttonValue => {
@@ -42,7 +54,7 @@ export default class TaskCard extends Component {
 
       return (
         <>
-          <Button key={`${buttonValue}_Button_${this.props.task.id}`} size="sm" value={buttonValue} onClick={(e) => { console.log(e.target.value) }}>{buttonLabel}</Button>
+          <Button key={`${buttonValue}_Button_${this.props.task.id}`} size="sm" value={buttonValue} onClick={() => this.handlePatch(buttonValue, this.props.task)}>{buttonLabel}</Button>
         </>
       )
     })
@@ -78,7 +90,7 @@ export default class TaskCard extends Component {
                   {this.props.task.notes}
                 </CardBody>
                 <ButtonGroup className="w-75 mx-auto">
-                  {this.buttonFunction(this.props.task.category)}
+                  {this.buttonFunction(this.props.task)}
                   <Button size="sm">Cancel</Button>
                 </ButtonGroup>
               </Card>
