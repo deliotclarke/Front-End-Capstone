@@ -5,14 +5,12 @@ import { Card, CardTitle, CardText, CardBody, UncontrolledCollapse, Label, Butto
 export default class TaskCard extends Component {
 
   state = {
-    selected: false,
-    strikeThrough: false
+    selected: false
   }
 
   toggle = (task) => {
     this.setState({
-      selected: !this.state.selected,
-      strikeThrough: !this.state.strikeThrough
+      selected: !this.state.selected
     })
 
     let newTaskValue = {
@@ -53,8 +51,8 @@ export default class TaskCard extends Component {
 
   render() {
 
-    const strikeThrough = this.state.strikeThrough ? "line-through" : ""
-    const textColor = this.state.strikeThrough ? "#BF4D43" : "#212529"
+    const strikeThrough = this.state.selected ? "line-through" : ""
+    const textColor = this.state.selected ? "#BF4D43" : "#212529"
     return (
       <>
         <Card body>
