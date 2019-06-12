@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import TaskManager from '../../modules/TaskManager'
 
 import {
   Button,
@@ -14,7 +15,7 @@ import {
   Alert
 } from 'reactstrap';
 
-import { FaPlusSquare } from 'react-icons/fa';
+import { FaPlusSquare, FaTimes } from 'react-icons/fa';
 
 
 class TaskAdd extends Component {
@@ -30,23 +31,26 @@ class TaskAdd extends Component {
       timestamp: "",
       taskCategory: "todo",
       showOnTimer: false,
+      selected: false,
       completed: false
     };
 
     this.createTaskObj = this.createTaskObj.bind(this);
     this.toggle = this.toggle.bind(this);
-    this.onDismiss = this.onDismiss.bind(this);
   }
 
 
   toggle() {
     this.setState(prevState => ({
-      modal: !prevState.modal
+      modal: !prevState.modal,
+      taskTitle: "",
+      taskNotes: "",
+      timestamp: "",
+      taskCategory: "todo",
+      showOnTimer: false,
+      selected: false,
+      completed: false
     }));
-  }
-
-  onDismiss() {
-    this.setState({ visible: false });
   }
 
   handleFieldChange = evt => {
@@ -71,9 +75,7 @@ class TaskAdd extends Component {
   createTaskObj() {
     if (this.state.taskTitle === "" || this.state.taskNotes === "" || this.state.taskCategory === "") {
       return (
-        <Alert color="danger" isOpen={this.state.visible} toggle={this.onDismiss}>
-          Please complete form!
-      </Alert>
+        alert("please complete form!")
       )
     } else {
 
@@ -87,24 +89,25 @@ class TaskAdd extends Component {
         timestamp: newTimestamp,
         category: this.state.taskCategory,
         showOnTimer: this.state.showOnTimer,
+        selected: false,
         completed: false
       }
 
       this.toggle();
       this.props.addTask(newTask)
-
       //may need a .then to reset the state of the form
 
     }
   }
-
 
   render() {
 
     return (
       <>
         <div className="clear-fix">
-          <Button className="float-right mt-4 mr-4" style={{ backgroundColor: "#BF4D43", border: "none", zIndex: "99", position: "sticky", display: "inline" }}
+          <Button className="float-right mt-4 mr-4" style={{ backgroundColor: "#BF4D43", border: "none", zIndex: "99", position: "sticky", display: "inline", outline: "none", shadow: "none" }}
+            onClick={() => this.props.handleDelete()}><FaTimes /></Button>
+          <Button className="float-right mt-4 mr-1" style={{ backgroundColor: "#3F7255", border: "none", zIndex: "99", position: "sticky", display: "inline", outline: "none", shadow: "none" }}
             onClick={this.toggle}><FaPlusSquare /></Button>
         </div>
         <div>
@@ -128,7 +131,7 @@ class TaskAdd extends Component {
 
                 <InputGroup className="mt-2">
                   <Input type="select" name="category" id="taskCategory" onChange={this.handleSelect}>
-                    <option value="todo" defaultValue>To Do</option>
+                    <option value="todo">To Do</option>
                     <option value="inprogress">In Progress</option>
                     <option value="done">Done</option>
                   </Input>
@@ -140,7 +143,7 @@ class TaskAdd extends Component {
             </ModalBody>
             <ModalFooter>
               <Button color="primary" onClick={this.createTaskObj}>Add Task</Button>{' '}
-              <Button color="secondary" onClick={() => { console.log(this.props.addTask) }}>Not That</Button>
+              <Button color="secondary" onClick={() => { console.log(this.props.addTask) }}>See Task Console</Button>
               <Button color="danger" onClick={this.toggle}>Cancel</Button>
             </ModalFooter>
           </Modal>

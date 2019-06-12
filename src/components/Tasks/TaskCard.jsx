@@ -1,8 +1,26 @@
 import React, { Component } from 'react'
-import { Card, CardTitle, CardText, CardBody, UncontrolledCollapse, Label, Button, ButtonGroup } from 'reactstrap'
+import { Card, CardTitle, CardText, CardBody, UncontrolledCollapse, Label, Button, ButtonGroup, FormGroup, Input } from 'reactstrap'
 
 
 export default class TaskCard extends Component {
+
+  state = {
+    selected: false,
+    strikeThrough: false
+  }
+
+  toggle = (task) => {
+    this.setState({
+      selected: !this.state.selected,
+      strikeThrough: !this.state.strikeThrough
+    })
+
+    let newTaskValue = {
+      selected: !this.state.selected
+    }
+
+    this.props.patchTask(newTaskValue, task.id)
+  }
 
   buttonFunction = (taskCategory) => {
     let categoryArray = ["todo", "inprogress", "done"]
@@ -26,7 +44,7 @@ export default class TaskCard extends Component {
 
       return (
         <>
-          <Button size="sm" value={buttonValue} onClick={(e) => { console.log(e.target.value) }}>{buttonLabel}</Button>
+          <Button key={`${buttonValue}_Button_${this.props.task.id}`} size="sm" value={buttonValue} onClick={(e) => { console.log(e.target.value) }}>{buttonLabel}</Button>
         </>
       )
     })
@@ -35,10 +53,23 @@ export default class TaskCard extends Component {
 
   render() {
 
+    const strikeThrough = this.state.strikeThrough ? "line-through" : ""
+    const textColor = this.state.strikeThrough ? "#BF4D43" : "#212529"
     return (
       <>
         <Card body>
-          <CardTitle><h4>{this.props.task.title}</h4></CardTitle>
+          <CardTitle><FormGroup check inline>
+            <Label check>
+              <Input type="checkbox"
+                checked={this.state.selected}
+                onChange={() => { this.toggle(this.props.task) }}
+              />
+              <h4
+                style={{ display: "inline-block", textDecoration: `${strikeThrough}`, color: `${textColor}` }}>
+                {this.props.task.title}</h4>
+            </Label>
+          </FormGroup>
+          </CardTitle>
           <div>
             <Button id={`toggler${this.props.task.id}`} size="sm" style={{ marginBottom: '1rem', backgroundColor: "#3F7255", border: "none" }}>
               See more

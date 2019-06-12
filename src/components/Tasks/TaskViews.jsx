@@ -5,8 +5,13 @@ import TasksToDo from './TasksToDo'
 import TasksInProgress from './TasksInProgress'
 import TasksDone from './TasksDone'
 
+import TaskManager from '../../modules/TaskManager'
+
 export default class TaskViews extends Component {
 
+  patchTask = (task, taskId) => {
+    TaskManager.patchTask(task, taskId)
+  }
 
   render() {
 
@@ -19,7 +24,7 @@ export default class TaskViews extends Component {
           })
           return (
             <>
-              <TasksToDo {...this.props} {...props} tasks={toDoTasks} />
+              <TasksToDo {...this.props} {...props} tasks={toDoTasks} patchTask={this.patchTask} />
             </>
           )
         }} />
@@ -30,7 +35,7 @@ export default class TaskViews extends Component {
           })
           return (
             <>
-              <TasksInProgress {...this.props} {...props} tasks={inProgressTasks} />
+              <TasksInProgress {...this.props} {...props} tasks={inProgressTasks} patchTask={this.patchTask} />
             </>
           )
         }} />
@@ -41,7 +46,7 @@ export default class TaskViews extends Component {
           })
           return (
             <>
-              <TasksDone {...this.props} {...props} tasks={doneTasks} />
+              <TasksDone {...this.props} {...props} tasks={doneTasks} patchTask={this.patchTask} />
             </>
           )
         }} />
