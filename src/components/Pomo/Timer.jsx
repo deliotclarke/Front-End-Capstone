@@ -35,6 +35,7 @@ export default class Timer extends Component {
         seconds: secondsLeft
       })
       console.log(this.state.seconds)
+
     }
   }
 
