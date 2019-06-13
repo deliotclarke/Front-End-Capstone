@@ -128,7 +128,7 @@ export default class TaskCard extends Component {
           <div>
             <Button
               id={`toggleCollapse_${this.props.task.id}`}
-              size="sm"
+              size="med"
               style={{ backgroundColor: "#3F7255", border: "none", display: `${visible}`, float: "right" }}
               onClick={() => this.startEdit(this.props.task)}>
               <FaEllipsisH />
