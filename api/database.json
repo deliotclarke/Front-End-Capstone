@@ -20,8 +20,8 @@
       "id": 1,
       "userId": "9v5xQ2XvRzNT3ESuq96DmDai1os2",
       "title": "build task add form",
-      "notes": "already have a task add button, and a modal that shows up, now i just have to populate a working form to enter tasks in",
-      "timestamp": "",
+      "notes": "",
+      "timestamp": 1560441953115,
       "category": "todo",
       "showOnTimer": false,
       "selected": false,
@@ -54,11 +54,22 @@
       "title": "find out what bind() is",
       "notes": "i have no idea whether i'm about to use bind correctly, and if i don't i need to go axxxxxe someboooodyyyyyyy",
       "timestamp": 1560276585453,
-      "category": "todo",
+      "category": "inprogress",
       "showOnTimer": false,
       "selected": false,
       "completed": false,
       "id": 5
+    },
+    {
+      "userId": "9v5xQ2XvRzNT3ESuq96DmDai1os2",
+      "title": "some stuff",
+      "notes": "some stuff",
+      "timestamp": 1560441956237,
+      "category": "todo",
+      "showOnTimer": true,
+      "selected": false,
+      "completed": false,
+      "id": 6
     }
   ]
 }
