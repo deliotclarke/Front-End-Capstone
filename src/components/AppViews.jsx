@@ -21,12 +21,13 @@ class AppViews extends Component {
 
 
   addTask = (taskObj) => {
+    let goto = taskObj.category
     TaskManager.addTask(taskObj)
       .then(() => TaskManager.getAll())
       .then(tasks => {
         this.setState({ tasks: tasks })
       })
-      .then(() => this.props.history.push('/tasks/todo'))
+      .then(() => this.props.history.push(`/tasks/${goto}`))
   }
 
   //handles batched deletion of selected tasks
@@ -45,6 +46,16 @@ class AppViews extends Component {
   }
 
   patchCategory = (taskObj, taskId) => {
+    let goto = taskObj.category
+    TaskManager.patchTask(taskObj, taskId)
+      .then(() => TaskManager.getAll())
+      .then(tasks => {
+        this.setState({ tasks: tasks })
+      })
+      .then(() => this.props.history.push(`/tasks/${goto}`))
+  }
+
+  editPatch = (taskObj, taskId) => {
     let goto = taskObj.category
     TaskManager.patchTask(taskObj, taskId)
       .then(() => TaskManager.getAll())
@@ -78,7 +89,7 @@ class AppViews extends Component {
           return (
             <>
               <TaskAdd {...props} user={this.props.user} addTask={this.addTask} handleDelete={this.handleDelete} tasks={currentUserTasks} />
-              <TaskViews {...props} user={this.props.user} tasks={currentUserTasks} patchCategory={this.patchCategory} />
+              <TaskViews {...props} user={this.props.user} tasks={currentUserTasks} patchCategory={this.patchCategory} editPatch={this.editPatch} />
               <TaskNav />
             </>
           )

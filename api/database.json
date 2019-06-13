@@ -54,11 +54,33 @@
       "title": "find out what bind() is",
       "notes": "i have no idea whether i'm about to use bind correctly, and if i don't i need to go axxxxxe someboooodyyyyyyy",
       "timestamp": 1560276585453,
-      "category": "todo",
+      "category": "inprogress",
       "showOnTimer": false,
       "selected": false,
       "completed": false,
       "id": 5
+    },
+    {
+      "userId": "9v5xQ2XvRzNT3ESuq96DmDai1os2",
+      "title": "some stuff",
+      "notes": "in progress, but you know, double notes.",
+      "timestamp": 1560441256226,
+      "category": "todo",
+      "showOnTimer": true,
+      "selected": false,
+      "completed": false,
+      "id": 6
+    },
+    {
+      "userId": "9v5xQ2XvRzNT3ESuq96DmDai1os2",
+      "title": "new task",
+      "notes": "we can change the hello edit",
+      "timestamp": 1560441302155,
+      "category": "todo",
+      "showOnTimer": false,
+      "selected": false,
+      "completed": false,
+      "id": 7
     }
   ]
 }
