@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { Card, CardTitle, CardText, CardBody, Collapse, Label, Button, ButtonGroup, FormGroup, Input } from 'reactstrap'
 
-import './TaskCard.css'
+import { FaEllipsisH } from 'react-icons/fa';
+
 
 
 export default class TaskCard extends Component {
@@ -116,6 +117,7 @@ export default class TaskCard extends Component {
               <Input type="checkbox"
                 checked={this.state.selected}
                 onChange={() => this.toggle(this.props.task)}
+                style={{ display: "none" }}
               />
               <h4
                 style={{ display: "inline-block", textDecoration: `${strikeThrough}`, color: `${textColor}` }}>
@@ -127,10 +129,10 @@ export default class TaskCard extends Component {
             <Button
               id={`toggleCollapse_${this.props.task.id}`}
               size="sm"
-              style={{ marginBottom: '1rem', backgroundColor: "#3F7255", border: "none", display: `${visible}` }}
+              style={{ backgroundColor: "#3F7255", border: "none", display: `${visible}`, float: "right" }}
               onClick={() => this.startEdit(this.props.task)}>
-              See more
-    </Button>
+              <FaEllipsisH />
+            </Button>
             <Collapse
               id={`#toggler${this.props.task.id}`}
               isOpen={this.state.collapse}>

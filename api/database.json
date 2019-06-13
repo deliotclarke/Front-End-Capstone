@@ -20,8 +20,8 @@
       "id": 1,
       "userId": "9v5xQ2XvRzNT3ESuq96DmDai1os2",
       "title": "build task add form",
-      "notes": "already have a task add button, and a modal that shows up, now i just have to populate a working form to enter tasks in",
-      "timestamp": "",
+      "notes": "",
+      "timestamp": 1560441953115,
       "category": "todo",
       "showOnTimer": false,
       "selected": false,
@@ -63,24 +63,13 @@
     {
       "userId": "9v5xQ2XvRzNT3ESuq96DmDai1os2",
       "title": "some stuff",
-      "notes": "in progress, but you know, double notes.",
-      "timestamp": 1560441256226,
+      "notes": "some stuff",
+      "timestamp": 1560441956237,
       "category": "todo",
       "showOnTimer": true,
       "selected": false,
       "completed": false,
       "id": 6
-    },
-    {
-      "userId": "9v5xQ2XvRzNT3ESuq96DmDai1os2",
-      "title": "new task",
-      "notes": "we can change the hello edit",
-      "timestamp": 1560441302155,
-      "category": "todo",
-      "showOnTimer": false,
-      "selected": false,
-      "completed": false,
-      "id": 7
     }
   ]
 }
