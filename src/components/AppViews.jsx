@@ -101,7 +101,7 @@ class AppViews extends Component {
           return <Timer {...props} {...this.props} user={this.props.user} tasks={currentUserTasks} editPatch={this.editPatch} patchCategory={this.patchCategory} />
         }} />
         <Route exact path="/profile" render={(props) => {
-          return <Profile {...props} user={this.props.user} />
+          return <Profile {...props} {...this.props} user={this.props.user} />
         }} />
 
       </>
