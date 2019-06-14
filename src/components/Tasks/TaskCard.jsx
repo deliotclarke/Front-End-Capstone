@@ -12,7 +12,8 @@ export default class TaskCard extends Component {
     cardCategory: this.props.task.category,
     collapse: false,
     editing: false,
-    newNotes: ""
+    newNotes: this.props.task.notes,
+    newTitle: this.props.task.title
   }
 
   toggle = (task) => {
@@ -63,11 +64,13 @@ export default class TaskCard extends Component {
     let newTimestamp = date.getTime()
 
     let editedTaskObj = {
+      title: this.state.newTitle,
       notes: this.state.newNotes,
+      category: task.category,
       timestamp: newTimestamp
     }
 
-    this.props.patchTask(editedTaskObj, task.id)
+    this.props.editPatch(editedTaskObj, task.id)
   }
 
   buttonFunction = (taskObj) => {
@@ -109,6 +112,8 @@ export default class TaskCard extends Component {
     const strikeThrough = this.state.selected ? "line-through" : ""
     const textColor = this.state.selected ? "#BF4D43" : "#212529"
     const visible = this.state.editing ? "none" : ""
+    const visibleInline = this.state.editing ? "none" : "inline-block"
+    const invisible = this.state.editing ? "" : "none"
     return (
       <>
         <Card body>
@@ -120,9 +125,16 @@ export default class TaskCard extends Component {
                 style={{ display: "none" }}
               />
               <h4
-                style={{ display: "inline-block", textDecoration: `${strikeThrough}`, color: `${textColor}` }}>
+                style={{ display: `${visibleInline}`, textDecoration: `${strikeThrough}`, color: `${textColor}` }}>
                 {this.props.task.title}</h4>
             </Label>
+            <Input type="text"
+              placeholder={this.props.task.title}
+              value={this.state.newTitle || ""}
+              name="newTitle"
+              id="newTitle"
+              onChange={(e) => this.handleFieldChange(e)}
+              style={{ display: `${invisible}` }} />
           </FormGroup>
           </CardTitle>
           <div>
@@ -137,7 +149,13 @@ export default class TaskCard extends Component {
               id={`#toggler${this.props.task.id}`}
               isOpen={this.state.collapse}>
               <Card>
-                <Input type="textarea" placeholder={this.props.task.notes} name="newNotes" id="newNotes" onChange={this.handleFieldChange} />
+                <Input type="textarea"
+                  placeholder={this.props.task.notes}
+                  value={this.state.newNotes || ""}
+                  name="newNotes"
+                  id="newNotes"
+                  onChange={(e) => this.handleFieldChange(e)} />
+
                 <ButtonGroup className="w-75 mx-auto">
                   {this.buttonFunction(this.props.task)}
                   <Button

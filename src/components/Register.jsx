@@ -10,7 +10,9 @@ export default class Register extends Component {
     name: '',
     username: '',
     email: '',
-    password: ''
+    password: '',
+    imageURL: '',
+    pomoCounter: 0
   }
 
   submit = () => {

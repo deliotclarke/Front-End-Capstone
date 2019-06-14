@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
 import { getUserFromLocalStorage } from './auth/userManager'
+import { patchUserPomo } from './auth/userManager'
+
 import './App.css'
 
 import Login from './components/Login'
@@ -14,8 +16,12 @@ class App extends Component {
   }
 
   logout = () => {
-    localStorage.removeItem('user');
-    this.setState({ user: "" })
+    let clearPomoCount = { pomoCounter: 0 }
+    patchUserPomo(clearPomoCount, this.state.user.id)
+      .then(() => {
+        localStorage.removeItem('user');
+        this.setState({ user: "" })
+      })
   }
 
   render() {
