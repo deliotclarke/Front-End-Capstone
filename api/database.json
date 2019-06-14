@@ -13,6 +13,15 @@
       "email": "user1@yup.com",
       "password": "",
       "id": "3t7NEduEvtOzFK4VTCPd5I0Hlb53"
+    },
+    {
+      "name": "Eliot Clarke",
+      "username": "deliotclarke",
+      "email": "eliot@email.com",
+      "password": "",
+      "imageURL": "",
+      "pomoCounter": 1,
+      "id": "GPkWevKyV8eW9qgThqqBprWRyl92"
     }
   ],
   "tasks": [

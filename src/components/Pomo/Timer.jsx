@@ -1,14 +1,18 @@
 import React, { Component } from 'react'
 import { Button, Container } from 'reactstrap'
 
+import { getUserFromLocalStorage } from '../../auth/userManager'
+
+
 
 
 export default class Timer extends Component {
   state = {
-    minutes: "01",
+    minutes: "00",
     seconds: "03",
     counting: false,
-    sessions: 0
+    user: getUserFromLocalStorage(),
+    pomoCounter: this.props.user.pomoCounter
   }
 
   handleStart = (e) => {
@@ -27,10 +31,21 @@ export default class Timer extends Component {
         secondsLeft--;
 
         if (this.state.minutes === "00" && this.state.seconds === "00") {
+
+          let keepPomoCount = this.state.user.pomoCounter
+          keepPomoCount++;
+
+          let newPomoCountObj = {
+            pomoCounter: keepPomoCount
+          }
+
+          this.props.patchUserPomo(newPomoCountObj, this.state.user.id)
+
           clearInterval(interval)
           this.setState({
-            minutes: 1,
-            seconds: 10
+            minutes: 0,
+            seconds: 10,
+            pomoCounter: keepPomoCount
           })
         } else if (this.state.seconds === "00") {
           minutesLeft--;
@@ -74,6 +89,7 @@ export default class Timer extends Component {
       <Container style={{ textAlign: "center" }}>
         <h1 style={{ fontSize: "6rem" }}>{this.state.minutes}:{this.state.seconds}</h1>
         <Button value="start" onClick={(e) => { this.handleStart(e) }}>Start/Reset</Button>
+        <Button value="pomoTest" onClick={() => { console.log(this.state.pomoCounter) }}>Pomo Test</Button>
       </Container>
     );
   }

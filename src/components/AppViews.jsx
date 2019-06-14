@@ -95,7 +95,7 @@ class AppViews extends Component {
           )
         }} />
         <Route exact path="/timer" render={(props) => {
-          return <Timer {...props} user={this.props.user} timer={this.state.timer} />
+          return <Timer {...props} {...this.props} user={this.props.user} timer={this.state.timer} />
         }} />
         <Route exact path="/profile" render={(props) => {
           return <Profile {...props} user={this.props.user} />
