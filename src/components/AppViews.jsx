@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Route } from 'react-router-dom'
+import { Route, withRouter } from 'react-router-dom'
 
 import TaskManager from '../modules/TaskManager'
 import TaskAdd from './Tasks/TaskAddButton'
@@ -15,7 +15,6 @@ class AppViews extends Component {
 
   state = {
     tasks: [],
-    timer: [],
     user: this.props.user
   }
 
@@ -95,7 +94,11 @@ class AppViews extends Component {
           )
         }} />
         <Route exact path="/timer" render={(props) => {
-          return <Timer {...props} {...this.props} user={this.props.user} timer={this.state.timer} />
+
+          let currentUserTasks = this.state.tasks.filter(task => {
+            return task.userId === this.props.user.id
+          })
+          return <Timer {...props} {...this.props} user={this.props.user} tasks={currentUserTasks} editPatch={this.editPatch} patchCategory={this.patchCategory} />
         }} />
         <Route exact path="/profile" render={(props) => {
           return <Profile {...props} user={this.props.user} />
@@ -106,4 +109,4 @@ class AppViews extends Component {
   }
 }
 
-export default AppViews
+export default withRouter(AppViews)

@@ -20,7 +20,7 @@
       "email": "eliot@email.com",
       "password": "",
       "imageURL": "",
-      "pomoCounter": 1,
+      "pomoCounter": 0,
       "id": "GPkWevKyV8eW9qgThqqBprWRyl92"
     }
   ],
@@ -101,6 +101,28 @@
       "selected": false,
       "completed": false,
       "id": 8
+    },
+    {
+      "userId": "GPkWevKyV8eW9qgThqqBprWRyl92",
+      "title": "in progress",
+      "notes": "does it show?",
+      "timestamp": 1560528454184,
+      "category": "inprogress",
+      "showOnTimer": true,
+      "selected": false,
+      "completed": false,
+      "id": 9
+    },
+    {
+      "userId": "GPkWevKyV8eW9qgThqqBprWRyl92",
+      "title": "in progress 2",
+      "notes": "does it show??",
+      "timestamp": 1560530337293,
+      "category": "inprogress",
+      "showOnTimer": true,
+      "selected": false,
+      "completed": false,
+      "id": 10
     }
   ]
 }

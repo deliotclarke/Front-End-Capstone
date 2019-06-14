@@ -19,6 +19,14 @@ export const patchUser = (userObj, userId) => {
   }).then(res => res.json())
 }
 
+export const patchUserPomo = (userObj, userId) => {
+  return patchUser(userObj, userId)
+    .then(currentUser => {
+      setUserInLocalStorage(currentUser);
+      return currentUser;
+    })
+}
+
 //user will have name, username, email and password
 //this is the mother function
 export const register = (user) => {

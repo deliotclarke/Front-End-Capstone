@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
 import { Button, Container } from 'reactstrap'
 
-import { getUserFromLocalStorage } from '../../auth/userManager'
+import { patchUserPomo } from '../../auth/userManager'
+import TaskManager from '../../modules/TaskManager'
+
+import InProgressTasks from '../Tasks/TasksInProgress'
 
 
 
@@ -11,11 +14,23 @@ export default class Timer extends Component {
     minutes: "00",
     seconds: "03",
     counting: false,
-    user: getUserFromLocalStorage(),
     pomoCounter: this.props.user.pomoCounter
   }
 
-  handleStart = (e) => {
+  patchTask = (task, taskId) => {
+    TaskManager.patchTask(task, taskId)
+  }
+
+  handleBreaks = (pomoCount) => {
+    console.log(pomoCount)
+    if (pomoCount % 4 === 0) {
+      alert("take a long break! 15-30 min!")
+    } else {
+      alert("take a short break! 3-5 min!")
+    }
+  }
+
+  handleStart = () => {
 
     this.setState({
       counting: !this.state.counting
@@ -24,31 +39,34 @@ export default class Timer extends Component {
     const interval = setInterval(() => {
       if (this.state.counting) {
 
-        let minutesLeft = this.state.minutes
-        let secondsLeft = this.state.seconds
-
+        let minutesLeft = this.state.minutes;
+        let secondsLeft = this.state.seconds;
 
         secondsLeft--;
 
         if (this.state.minutes === "00" && this.state.seconds === "00") {
 
-          let keepPomoCount = this.state.user.pomoCounter
+          let keepPomoCount = this.state.pomoCounter;
           keepPomoCount++;
 
           let newPomoCountObj = {
             pomoCounter: keepPomoCount
           }
 
-          //!look out nowwwww
+          patchUserPomo(newPomoCountObj, this.props.user.id)
+            .then(() => {
+              this.props.history.push('/timer')
+            })
 
-          this.props.patchUserPomo(newPomoCountObj, this.state.user.id)
-
-          clearInterval(interval)
           this.setState({
-            minutes: 0,
-            seconds: 10,
+            minutes: "00",
+            seconds: "03",
+            counting: !this.state.counting,
             pomoCounter: keepPomoCount
           })
+          clearInterval(interval)
+          this.handleBreaks(keepPomoCount)
+
         } else if (this.state.seconds === "00") {
           minutesLeft--;
           secondsLeft = 59
@@ -76,8 +94,8 @@ export default class Timer extends Component {
 
         clearInterval(interval)
         this.setState({
-          minutes: 1,
-          seconds: 10
+          minutes: "00",
+          seconds: "03"
         })
 
       }
@@ -87,12 +105,19 @@ export default class Timer extends Component {
 
 
   render() {
+
+    let inProgressTasks = this.props.tasks.filter(task => {
+      return task.category === "inprogress"
+    })
     return (
-      <Container style={{ textAlign: "center" }}>
-        <h1 style={{ fontSize: "6rem" }}>{this.state.minutes}:{this.state.seconds}</h1>
-        <Button value="start" onClick={(e) => { this.handleStart(e) }}>Start/Reset</Button>
-        <Button value="pomoTest" onClick={() => { console.log(this.state.pomoCounter) }}>Pomo Test</Button>
-      </Container>
+      <>
+        <Container style={{ textAlign: "center" }}>
+          <h1 style={{ fontSize: "6rem" }}>{this.state.minutes}:{this.state.seconds}</h1>
+          <h6>Pomo Counter: {this.state.pomoCounter}</h6>
+          <Button value="start" onClick={() => this.handleStart()}>Start/Reset</Button>
+        </Container>
+        <InProgressTasks {...this.props} tasks={inProgressTasks} patchTask={this.patchTask} />
+      </>
     );
   }
 }

@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
 import { getUserFromLocalStorage } from './auth/userManager'
-import { patchUser } from './auth/userManager'
-import { getUser } from './auth/userManager'
+import { patchUserPomo } from './auth/userManager'
 
 import './App.css'
 
@@ -16,29 +15,13 @@ class App extends Component {
     user: getUserFromLocalStorage()
   }
 
-  patchUserPomo = (newObj, userId) => {
-    let keepId = userId
-    patchUser(newObj, userId)
-      .then(() => getUser(keepId))
-      .then(user => {
-        this.setState({ user: user })
-      })
-      .then(() => this.props.history.push('/timer'))
-  }
-
-  // patchCategory = (taskObj, taskId) => {
-  //   let goto = taskObj.category
-  //   TaskManager.patchTask(taskObj, taskId)
-  //     .then(() => TaskManager.getAll())
-  //     .then(tasks => {
-  //       this.setState({ tasks: tasks })
-  //     })
-  //     .then(() => this.props.history.push(`/tasks/${goto}`))
-  // }
-
   logout = () => {
-    localStorage.removeItem('user');
-    this.setState({ user: "" })
+    let clearPomoCount = { pomoCounter: 0 }
+    patchUserPomo(clearPomoCount, this.state.user.id)
+      .then(() => {
+        localStorage.removeItem('user');
+        this.setState({ user: "" })
+      })
   }
 
   render() {
@@ -51,7 +34,7 @@ class App extends Component {
             return this.state.user ? (
               <>
                 <NavBar {...props} user={this.state.user} onLogout={this.logout} />
-                <AppViews {...props} user={this.state.user} patchUserPomo={this.patchUserPomo} />
+                <AppViews {...props} user={this.state.user} />
               </>
             ) : (
                 <Redirect to="/login" />
