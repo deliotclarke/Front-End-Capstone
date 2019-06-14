@@ -9,6 +9,14 @@ export const getUser = (userId) => {
     .then(res => res.json())
 }
 
+export const savePhoto = (photoObj, userId) => {
+  return patchUser(photoObj, userId)
+    .then(currentUser => {
+      setUserInLocalStorage(currentUser);
+      return currentUser;
+    })
+}
+
 export const patchUser = (userObj, userId) => {
   return fetch(`${url}/${userId}`, {
     method: "PATCH",
