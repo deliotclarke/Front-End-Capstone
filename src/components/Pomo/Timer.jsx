@@ -12,7 +12,6 @@ export default class Timer extends Component {
   }
 
   handleStart = (e) => {
-    let totalSeconds = parseInt(this.state.seconds)
 
     this.setState({
       counting: !this.state.counting
@@ -55,7 +54,6 @@ export default class Timer extends Component {
             seconds: secondsLeft
           })
         }
-
 
       } else if (this.state.counting === false) {
 
