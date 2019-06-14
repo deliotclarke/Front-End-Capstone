@@ -39,6 +39,8 @@ export default class Timer extends Component {
             pomoCounter: keepPomoCount
           }
 
+          //!look out nowwwww
+
           this.props.patchUserPomo(newPomoCountObj, this.state.user.id)
 
           clearInterval(interval)
