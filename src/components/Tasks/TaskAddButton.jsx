@@ -12,10 +12,10 @@ import {
   InputGroup,
   InputGroupAddon,
   InputGroupText,
-  Alert
 } from 'reactstrap';
 
 import { FaPlusSquare, FaTimes } from 'react-icons/fa';
+import './TaskAdd.css'
 
 
 class TaskAdd extends Component {
@@ -112,20 +112,20 @@ class TaskAdd extends Component {
         </div>
         <div>
           <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className} backdrop={this.state.backdrop}>
-            <ModalHeader toggle={this.toggle}>Add Task</ModalHeader>
+            <ModalHeader toggle={this.toggle} style={{ color: "#3F7255" }}>Add Task</ModalHeader>
             <ModalBody>
               <Form inline onSubmit={(e) => e.preventDefault()}>
                 <InputGroup className="mt-2">
                   <Input type="text" name="title" id="taskTitle" onChange={this.handleFieldChange} />
                   <InputGroupAddon addonType="append">
-                    <InputGroupText>Title</InputGroupText>
+                    <InputGroupText style={{ backgroundColor: "#488C66", border: "1px #488c66 solid", color: "#F7F6F6" }}>Title</InputGroupText>
                   </InputGroupAddon>
                 </InputGroup>
 
                 <InputGroup className="mt-2">
                   <Input type="text" name="notes" id="taskNotes" onChange={this.handleFieldChange} />
                   <InputGroupAddon addonType="append">
-                    <InputGroupText>Notes</InputGroupText>
+                    <InputGroupText style={{ backgroundColor: "#488C66", border: "1px #488c66 solid", color: "#F7F6F6" }}>Notes</InputGroupText>
                   </InputGroupAddon>
                 </InputGroup>
 
@@ -136,15 +136,14 @@ class TaskAdd extends Component {
                     <option value="done">Done</option>
                   </Input>
                   <InputGroupAddon addonType="append">
-                    <InputGroupText>Category</InputGroupText>
+                    <InputGroupText style={{ backgroundColor: "#488C66", border: "1px #488C66 solid", color: "#F7F6F6" }}>Category</InputGroupText>
                   </InputGroupAddon>
                 </InputGroup>
               </Form>
             </ModalBody>
             <ModalFooter>
-              <Button color="primary" onClick={this.createTaskObj}>Add Task</Button>{' '}
-              <Button color="secondary" onClick={() => { console.log(this.props.addTask) }}>See Task Console</Button>
-              <Button color="danger" onClick={this.toggle}>Cancel</Button>
+              <Button style={{ backgroundColor: "#3F7255", border: "none", boxShadow: "none" }} size="sm" onClick={this.createTaskObj}>Add Task</Button>{' '}
+              <Button style={{ backgroundColor: "#BF4D43", border: "none", boxShadow: "none" }} size="sm" onClick={this.toggle}>Cancel</Button>
             </ModalFooter>
           </Modal>
         </div>

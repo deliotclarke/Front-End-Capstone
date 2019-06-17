@@ -28,7 +28,7 @@ class NavBar extends React.Component {
           <Collapse isOpen={!this.state.collapsed} navbar>
             <Nav navbar>
               <NavItem>
-                <NavLink tag={RRNavLink} to="/" style={{ color: '#F7F6F6' }} onClick={this.toggleNavbar} >how to</NavLink>
+                <NavLink tag={RRNavLink} to="/" style={{ color: '#F7F6F6' }} onClick={this.toggleNavbar} >home</NavLink>
               </NavItem>
               <NavItem>
                 <NavLink tag={RRNavLink} to="/tasks/todo" style={{ color: '#F7F6F6' }} onClick={this.toggleNavbar} >tasks</NavLink>

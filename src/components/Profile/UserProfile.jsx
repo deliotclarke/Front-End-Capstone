@@ -75,8 +75,8 @@ export default class UserProfile extends Component {
                 style={{
                   border: "none",
                   borderRadius: "50%",
-                  backgroundColor: "red",
-                  color: "white",
+                  backgroundColor: "transparent",
+                  color: "#BF4D43",
                   position: "absolute",
                   display: `${visible}`
                 }}
@@ -101,18 +101,18 @@ export default class UserProfile extends Component {
             <div style={{ display: `${invisible}`, textAlign: "center" }}>
               <FormText>No user image exists, upload an image below!</FormText>
               <FormGroup className="mt-4" style={{ display: `${invisible}`, textAlign: "right" }}>
-                <div className="upload-btn-wrapper">
+                <div style={{ display: "flex" }}>
                   <Input
                     type="file"
                     label="photo"
                     onChange={(e) => this.setState({ photoToSave: e.target.files[0] })}
                     placeholder="photo" />
-                  <Button size="sm" className="btn" style={{ backgroundColor: "green" }} onClick={this.saveNewPhoto}><FaPlusCircle /></Button>
+                  <Button size="sm" className="btn" style={{ backgroundColor: "#488C66", border: "none" }} onClick={this.saveNewPhoto}><FaPlusCircle /></Button>
                 </div>
               </FormGroup>
             </div>
 
-            <h1 className="display-4 mb-4" style={{ textAlign: "center" }}>{this.props.user.username}</h1>
+            <h2 className="display-4 mb-4" style={{ textAlign: "center", color: "#488C66" }}>{this.props.user.username}</h2>
             <br />
             <p className="lead" style={{ borderBottom: "solid 1px #488C66", display: "inline-block" }}>Name: {this.props.user.name}</p>
             <p className="lead" style={{ borderBottom: "solid 1px #488C66", display: "inline-block" }}>Email: {this.props.user.email}</p>
