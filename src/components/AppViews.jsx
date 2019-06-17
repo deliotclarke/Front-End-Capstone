@@ -8,6 +8,7 @@ import TaskNav from './Tasks/TaskNav'
 
 import Timer from './Pomo/Timer'
 import Profile from './Profile/UserProfile'
+import LandingScreen from './Landing/LandingScreen';
 
 
 class AppViews extends Component {
@@ -77,7 +78,7 @@ class AppViews extends Component {
     return (
       <>
         <Route exact path="/" render={(props) => {
-          return <h1>Welcome, {this.props.user.name}</h1>
+          return <LandingScreen {...props} user={this.props.user} />
         }} />
         <Route path="/tasks" render={(props) => {
 

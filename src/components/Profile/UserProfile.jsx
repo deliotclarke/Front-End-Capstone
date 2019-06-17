@@ -107,7 +107,7 @@ export default class UserProfile extends Component {
                     label="photo"
                     onChange={(e) => this.setState({ photoToSave: e.target.files[0] })}
                     placeholder="photo" />
-                  <Button size="sm" className="btn" onClick={this.saveNewPhoto}>Upload Photo</Button>
+                  <Button size="sm" className="btn" style={{ backgroundColor: "green" }} onClick={this.saveNewPhoto}><FaPlusCircle /></Button>
                 </div>
               </FormGroup>
             </div>
