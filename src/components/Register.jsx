@@ -11,7 +11,7 @@ export default class Register extends Component {
     username: '',
     email: '',
     password: '',
-    imageURL: '',
+    userImage: '',
     pomoCounter: 0
   }
 

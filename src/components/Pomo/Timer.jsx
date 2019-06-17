@@ -114,7 +114,7 @@ export default class Timer extends Component {
         <Container style={{ textAlign: "center" }}>
           <h1 style={{ fontSize: "6rem" }}>{this.state.minutes}:{this.state.seconds}</h1>
           <h6>Pomo Counter: {this.state.pomoCounter}</h6>
-          <Button value="start" onClick={() => this.handleStart()}>Start/Reset</Button>
+          <Button value="start" style={{ boxShadow: "none" }} onClick={() => this.handleStart()}>Start/Reset</Button>
         </Container>
         <InProgressTasks {...this.props} tasks={inProgressTasks} patchTask={this.patchTask} />
       </>

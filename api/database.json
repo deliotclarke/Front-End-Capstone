@@ -5,6 +5,8 @@
       "username": "user0",
       "email": "user0@email.com",
       "password": "",
+      "userImage": "https://firebasestorage.googleapis.com/v0/b/fecapstone-eliot.appspot.com/o/profiles%2Fprofile-photo-1560802301510?alt=media&token=130c4b0d-9cde-4b45-a2d0-d38bc0ebafd3",
+      "pomoCounter": 0,
       "id": "9v5xQ2XvRzNT3ESuq96DmDai1os2"
     },
     {
@@ -12,6 +14,8 @@
       "username": "user1",
       "email": "user1@yup.com",
       "password": "",
+      "userImage": "",
+      "pomoCounter": 0,
       "id": "3t7NEduEvtOzFK4VTCPd5I0Hlb53"
     },
     {
@@ -19,7 +23,6 @@
       "username": "deliotclarke",
       "email": "eliot@email.com",
       "password": "",
-      "imageURL": "",
       "pomoCounter": 0,
       "id": "GPkWevKyV8eW9qgThqqBprWRyl92",
       "userImage": "https://firebasestorage.googleapis.com/v0/b/fecapstone-eliot.appspot.com/o/profiles%2Fprofile-photo-1560540324418?alt=media&token=fdb1e7e3-d856-4105-b59f-e809a1f63f14"
@@ -85,7 +88,7 @@
       "userId": "9v5xQ2XvRzNT3ESuq96DmDai1os2",
       "title": "words words 2",
       "notes": "kdkdjfk",
-      "timestamp": 1560444450440,
+      "timestamp": 1560800238412,
       "category": "todo",
       "showOnTimer": true,
       "selected": false,
@@ -96,7 +99,7 @@
       "userId": "9v5xQ2XvRzNT3ESuq96DmDai1os2",
       "title": "to edit 2",
       "notes": "to edit some more 2",
-      "timestamp": 1560444484939,
+      "timestamp": 1560797578001,
       "category": "inprogress",
       "showOnTimer": true,
       "selected": false,

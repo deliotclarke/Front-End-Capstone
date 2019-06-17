@@ -12,15 +12,22 @@ class TaskNav extends Component {
         <Container>
           <ButtonGroup className="fixed-bottom mb-4 mx-auto" style={{ width: "80%" }}>
             <Button
-              tag={RRNavLink} style={{ outline: "none" }} to="/tasks/todo">
+              className="btn"
+              tag={RRNavLink}
+              style={{ boxShadow: "none" }}
+              to="/tasks/todo">
               To Do
               </Button>
             <Button
-              tag={RRNavLink} style={{ outline: "none" }} to="/tasks/inprogress">
+              className="btn"
+              style={{ boxShadow: "none" }}
+              tag={RRNavLink} to="/tasks/inprogress">
               In Progress
               </Button>
             <Button
-              tag={RRNavLink} style={{ outline: "none" }} to="/tasks/done">
+              className="btn"
+              style={{ boxShadow: "none" }}
+              tag={RRNavLink} to="/tasks/done">
               Done
               </Button>
           </ButtonGroup>

@@ -1,0 +1,14 @@
+.btn:focus {
+  box-shadow: none !important;
+  outline: none;
+}
+
+.btn-secondary:focus {
+  box-shadow: none !important;
+  outline: none;
+}
+
+.form-control:focus {
+  box-shadow: none !important;
+  border-color: #3F7255 !important;
+}
