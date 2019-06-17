@@ -4,9 +4,7 @@ import 'firebase/storage';
 import { savePhoto } from '../../auth/userManager'
 
 import { Jumbotron, Container, Input, Button, FormGroup, FormText } from 'reactstrap';
-import { FaPortrait } from 'react-icons/fa';
-
-import './UserProfile.css'
+import { FaPortrait, FaPlusSquare, FaTimesCircle, FaPlusCircle } from 'react-icons/fa';
 
 
 export default class UserProfile extends Component {
@@ -15,6 +13,8 @@ export default class UserProfile extends Component {
 
   state = {
     photoToSave: null,
+    userImage: this.props.user.userImage,
+    userHasImage: false
   }
 
   saveNewPhoto = () => {
@@ -28,23 +28,59 @@ export default class UserProfile extends Component {
         }, this.props.user.id)
       })
       .then(() => {
+
+        this.setState({
+          userHasImage: true,
+          userImage: this.props.user.userImage
+        })
+        this.props.history.push('/profile')
+
+      })
+  }
+
+  deleteUserPhoto = () => {
+    savePhoto({
+      userImage: ""
+    }, this.props.user.id)
+      .then(() => {
+        this.setState({ userHasImage: false })
         this.props.history.push('/profile')
       })
   }
 
+  componentDidMount() {
+    if (this.props.user.userImage === "") {
+      this.setState({ userHasImage: false })
+    } else {
+      this.setState({
+        userHasImage: true,
+        userImage: this.props.user.userImage
+      })
+    }
+  }
+
 
   render() {
-    let visible = ""
-    let invisible = "none"
-    if (this.props.user.userImage === "") {
-      invisible = ""
-      visible = "none"
-    }
+
+    const visible = this.state.userHasImage ? "" : "none"
+    const invisible = this.state.userHasImage ? "none" : ""
+
     return (
       <>
         <Jumbotron style={{ backgroundColor: "white" }} fluid>
           <Container fluid>
             <div style={{ width: "100%", textAlign: "center" }}>
+              <Button
+                size="sm"
+                style={{
+                  border: "none",
+                  borderRadius: "50%",
+                  backgroundColor: "red",
+                  color: "white",
+                  position: "absolute",
+                  display: `${visible}`
+                }}
+                onClick={this.deleteUserPhoto}><FaTimesCircle /></Button>
               <img
                 style={{
                   display: `${visible}`,
@@ -52,7 +88,7 @@ export default class UserProfile extends Component {
                   height: "125px",
                   width: "125px",
                   borderRadius: "50%"
-                }} src={this.props.user.userImage} alt="" />
+                }} src={this.state.userImage} alt="" />
               <FaPortrait
                 style={{
                   display: `${invisible}`,
@@ -64,14 +100,14 @@ export default class UserProfile extends Component {
             </div>
             <div style={{ display: `${invisible}`, textAlign: "center" }}>
               <FormText>No user image exists, upload an image below!</FormText>
-              <FormGroup className="mt-4" style={{ display: `${invisible}`, textAlign: "center" }}>
+              <FormGroup className="mt-4" style={{ display: `${invisible}`, textAlign: "right" }}>
                 <div className="upload-btn-wrapper">
-                  <Button size="sm" className="btn" onClick={this.saveNewPhoto}>Upload Photo</Button>
                   <Input
                     type="file"
                     label="photo"
                     onChange={(e) => this.setState({ photoToSave: e.target.files[0] })}
                     placeholder="photo" />
+                  <Button size="sm" className="btn" onClick={this.saveNewPhoto}>Upload Photo</Button>
                 </div>
               </FormGroup>
             </div>

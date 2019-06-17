@@ -64,7 +64,6 @@ class AppViews extends Component {
       .then(() => this.props.history.push(`/tasks/${goto}`))
   }
 
-
   componentDidMount() {
     const newState = {}
 
