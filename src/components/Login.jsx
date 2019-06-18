@@ -78,7 +78,7 @@ export default class Register extends Component {
             <Button
               style={{ backgroundColor: "#488C66", borderColor: "#488C66" }}
               onClick={() => this.submit()}
-              disable={this.state.disableSubmit}
+              disabled={this.state.disableSubmit}
             >Login</Button>
           </Form>
           <p className="lead text-right mt-1">Not a user?

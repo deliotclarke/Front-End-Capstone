@@ -24,9 +24,10 @@ class App extends Component {
       })
   }
 
-  refreshUser = () => {
-    let updatedUser = getUserFromLocalStorage()
-    this.setState({ user: updatedUser })
+  refreshUser = (newUrl) => {
+    let currentUser = { ...this.state.user }
+    currentUser.userImage = newUrl
+    this.setState({ user: currentUser })
     debugger
   }
 
