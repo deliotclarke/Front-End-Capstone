@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button, Container } from 'reactstrap'
+import { Button, Container, Toast, ToastHeader, Spinner, ToastBody } from 'reactstrap'
 
 import { patchUserPomo } from '../../auth/userManager'
 import TaskManager from '../../modules/TaskManager'
@@ -14,7 +14,21 @@ export default class Timer extends Component {
     minutes: "00",
     seconds: "03",
     counting: false,
-    pomoCounter: this.props.user.pomoCounter
+    pomoCounter: this.props.user.pomoCounter,
+    showShort: false,
+    showLong: false
+  }
+
+  toggleShort = () => {
+    this.setState({
+      showShort: !this.state.showShort
+    });
+  }
+
+  toggleLong = () => {
+    this.setState({
+      showLong: !this.state.showLong
+    });
   }
 
   patchTask = (task, taskId) => {
@@ -24,9 +38,9 @@ export default class Timer extends Component {
   handleBreaks = (pomoCount) => {
     console.log(pomoCount)
     if (pomoCount % 4 === 0) {
-      alert("take a long break! 15-30 min!")
+      this.toggleLong()
     } else {
-      alert("take a short break! 3-5 min!")
+      this.toggleShort()
     }
   }
 
@@ -115,6 +129,22 @@ export default class Timer extends Component {
           <h1 style={{ fontSize: "6rem" }}>{this.state.minutes}:{this.state.seconds}</h1>
           <h6>Pomo Counter: {this.state.pomoCounter}</h6>
           <Button value="start" style={{ boxShadow: "none" }} onClick={() => this.handleStart()}>Start/Reset</Button>
+          <div>
+            <Toast isOpen={this.state.showLong} style={{ marginTop: "1rem" }}>
+              <ToastHeader toggle={this.toggleLong} icon={<Spinner size="sm" />}>Long Break!</ToastHeader>
+              <ToastBody>
+                Take A Longer Break! You Deserve It! (15 - 30 minutes)
+              </ToastBody>
+            </Toast>
+          </div>
+          <div>
+            <Toast isOpen={this.state.showShort} style={{ marginTop: "1rem" }}>
+              <ToastHeader toggle={this.toggleShort} icon={<Spinner size="sm" />}>Short Break!</ToastHeader>
+              <ToastBody>
+                Take A Short Break! (3 - 5 minutes)
+              </ToastBody>
+            </Toast>
+          </div>
         </Container>
         <InProgressTasks {...this.props} tasks={inProgressTasks} patchTask={this.patchTask} />
       </>

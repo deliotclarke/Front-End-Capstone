@@ -24,6 +24,13 @@ class App extends Component {
       })
   }
 
+  refreshUser = (newUrl) => {
+    let currentUser = { ...this.state.user }
+    currentUser.userImage = newUrl
+    this.setState({ user: currentUser })
+    debugger
+  }
+
   render() {
     return (
       <div className="App">
@@ -34,7 +41,7 @@ class App extends Component {
             return this.state.user ? (
               <>
                 <NavBar {...props} user={this.state.user} onLogout={this.logout} />
-                <AppViews {...props} user={this.state.user} />
+                <AppViews {...props} user={this.state.user} refreshUser={this.refreshUser} />
               </>
             ) : (
                 <Redirect to="/login" />

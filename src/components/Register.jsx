@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { register } from '../auth/userManager'
 
-import { Container, Form, FormGroup, Label, Input, Jumbotron, Button } from 'reactstrap'
+import { Container, Form, FormGroup, Label, Input, Jumbotron, Button, FormFeedback } from 'reactstrap'
 
 export default class Register extends Component {
 
@@ -12,7 +12,11 @@ export default class Register extends Component {
     email: '',
     password: '',
     userImage: '',
-    pomoCounter: 0
+    validate: {
+      email: ''
+    },
+    pomoCounter: 0,
+    disableSubmit: true
   }
 
   submit = () => {
@@ -21,6 +25,19 @@ export default class Register extends Component {
         this.props.onRegister(newUser);
         this.props.history.push('/');
       })
+  }
+
+  validateEmail = (e) => {
+    const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    const { validate } = this.state
+    if (emailRegex.test(e.target.value)) {
+      validate.email = "isValid"
+      this.setState({ disableSubmit: false })
+    } else {
+      validate.email = "isInvalid"
+      this.setState({ disableSubmit: true })
+    }
+    this.setState({ validate })
   }
 
   render() {
@@ -39,8 +56,8 @@ export default class Register extends Component {
                 id="name"
                 placeholder="full name"
                 onChange={(e) => { this.setState({ name: e.target.value }) }} />
-
             </FormGroup>
+
             <FormGroup>
               <Label for="username">Username</Label>
               <Input
@@ -49,8 +66,8 @@ export default class Register extends Component {
                 id="username"
                 placeholder="username"
                 onChange={(e) => { this.setState({ username: e.target.value }) }} />
-
             </FormGroup>
+
             <FormGroup>
               <Label for="email">Email</Label>
               <Input
@@ -58,9 +75,21 @@ export default class Register extends Component {
                 name="email"
                 id="email"
                 placeholder="email"
-                onChange={(e) => { this.setState({ email: e.target.value }) }} />
-
+                valid={this.state.validate.email === "isValid"}
+                invalid={this.state.validate.email === "isInvalid"}
+                onChange={(e) => {
+                  this.validateEmail(e)
+                  this.setState({ email: e.target.value })
+                }} />
+              <FormFeedback valid>
+                Perrrrrrfect.
+              </FormFeedback>
+              <FormFeedback>
+                Please enter a valid email address to submit!
+              </FormFeedback>
             </FormGroup>
+
+
             <FormGroup>
               <Label for="password">Password</Label>
               <Input
@@ -69,9 +98,13 @@ export default class Register extends Component {
                 id="password"
                 placeholder="password"
                 onChange={(e) => { this.setState({ password: e.target.value }) }} />
-
             </FormGroup>
-            <Button style={{ backgroundColor: "#488C66", borderColor: "#488C66" }} onClick={() => this.submit()}>Register</Button>
+
+            <Button
+              style={{ backgroundColor: "#488C66", borderColor: "#488C66" }}
+              onClick={() => this.submit()}
+              disabled={this.state.disableSubmit}
+            >Register</Button>
           </Form>
           <p className="lead text-right mt-1">Already a user?
             <Link to="/login"> Login here</Link>

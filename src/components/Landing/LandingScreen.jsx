@@ -40,8 +40,8 @@ export default class LandingScreen extends Component {
                     <li>If you decide you'd like to remove a task entirely, just click the title of as many as you'd like to delete and press the <FaTimes /> button. Any task that has turned red and striked out will be removed permanently, so feel free to track finished tasks by leaving them on your Done board.</li>
                   </ul>
 
-                  <h6 className="mt-5">“Unless commitment is made, there are only promises and hopes; but no plans.”</h6>
-                  <h6 style={{ float: "right" }}>― Peter F. Drucker</h6>
+                  <h6 className="mt-5">“Divide each difficulty into as many parts as is feasible and necessary to resolve it.” </h6>
+                  <h6 style={{ float: "right" }}>― René Descartes</h6>
                 </CardBody>
               </Card>
             </UncontrolledCollapse>

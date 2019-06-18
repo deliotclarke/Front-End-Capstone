@@ -13,8 +13,7 @@ export default class UserProfile extends Component {
 
   state = {
     photoToSave: null,
-    userImage: this.props.user.userImage,
-    userHasImage: false
+    userImage: this.props.user.userImage
   }
 
   saveNewPhoto = () => {
@@ -26,15 +25,11 @@ export default class UserProfile extends Component {
         savePhoto({
           userImage: url
         }, this.props.user.id)
-      })
-      .then(() => {
-
-        this.setState({
-          userHasImage: true,
-          userImage: this.props.user.userImage
-        })
-        this.props.history.push('/profile')
-
+          .then(() => {
+            this.props.refreshUser(url)
+            debugger
+            this.props.history.push('/profile')
+          })
       })
   }
 
@@ -43,27 +38,18 @@ export default class UserProfile extends Component {
       userImage: ""
     }, this.props.user.id)
       .then(() => {
-        this.setState({ userHasImage: false })
+        this.props.refreshUser("")
         this.props.history.push('/profile')
       })
   }
 
-  componentDidMount() {
-    if (this.props.user.userImage === "") {
-      this.setState({ userHasImage: false })
-    } else {
-      this.setState({
-        userHasImage: true,
-        userImage: this.props.user.userImage
-      })
-    }
-  }
 
 
   render() {
 
-    const visible = this.state.userHasImage ? "" : "none"
-    const invisible = this.state.userHasImage ? "none" : ""
+    // !! turns the "variable" into a boolean
+    const visible = !!this.props.user.userImage ? "" : "none"
+    const invisible = !!this.props.user.userImage ? "none" : ""
 
     return (
       <>
@@ -88,7 +74,7 @@ export default class UserProfile extends Component {
                   height: "125px",
                   width: "125px",
                   borderRadius: "50%"
-                }} src={this.state.userImage} alt="" />
+                }} src={this.props.user.userImage} alt="" />
               <FaPortrait
                 style={{
                   display: `${invisible}`,
