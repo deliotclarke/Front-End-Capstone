@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
 import { Container, CardColumns } from 'reactstrap'
-import TaskCard from './TaskCard'
+import TimerTaskCard from './TimerTaskCard'
 
-
-export default class TasksInProgress extends Component {
+export default class TimerTasks extends Component {
 
 
   render() {
@@ -12,12 +11,12 @@ export default class TasksInProgress extends Component {
 
     return (
       <>
-        <Container style={{ marginBottom: "5rem" }}>
+        <Container>
           <CardColumns>
-            <h2 className="mt-4" style={{ color: "#3F7255" }}>In Progress</h2>
+            <h3 className="mt-4" style={{ color: "#3F7255" }}>Current Tasks</h3>
             {
               this.props.tasks.map(task =>
-                <TaskCard key={task.id} task={task} {...this.props} />
+                <TimerTaskCard key={task.id} task={task} {...this.props} />
               )
             }
           </CardColumns>

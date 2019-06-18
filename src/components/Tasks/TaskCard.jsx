@@ -8,7 +8,6 @@ import { FaEllipsisH } from 'react-icons/fa';
 export default class TaskCard extends Component {
 
   state = {
-    selected: false,
     cardCategory: this.props.task.category,
     collapse: false,
     editing: false,
@@ -17,12 +16,9 @@ export default class TaskCard extends Component {
   }
 
   toggle = (task) => {
-    this.setState({
-      selected: !this.state.selected
-    })
 
     let newTaskValue = {
-      selected: !this.state.selected
+      selected: !this.props.task.selected
     }
 
     this.props.patchTask(newTaskValue, task.id)
@@ -44,7 +40,6 @@ export default class TaskCard extends Component {
       collapse: !this.state.collapse,
       editing: !this.state.editing
     })
-
 
   }
 
@@ -109,8 +104,8 @@ export default class TaskCard extends Component {
 
   render() {
 
-    const strikeThrough = this.state.selected ? "line-through" : ""
-    const textColor = this.state.selected ? "#BF4D43" : "#212529"
+    const strikeThrough = this.props.task.selected ? "line-through" : ""
+    const textColor = this.props.task.selected ? "#BF4D43" : "#212529"
     const visible = this.state.editing ? "none" : ""
     const visibleInline = this.state.editing ? "none" : "inline-block"
     const invisible = this.state.editing ? "" : "none"
@@ -120,7 +115,7 @@ export default class TaskCard extends Component {
           <CardTitle><FormGroup check inline>
             <Label check>
               <Input type="checkbox"
-                checked={this.state.selected}
+                checked={!this.props.task.selected}
                 onChange={() => this.toggle(this.props.task)}
                 style={{ display: "none" }}
               />

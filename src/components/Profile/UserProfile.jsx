@@ -43,8 +43,6 @@ export default class UserProfile extends Component {
       })
   }
 
-
-
   render() {
 
     // !! turns the "variable" into a boolean

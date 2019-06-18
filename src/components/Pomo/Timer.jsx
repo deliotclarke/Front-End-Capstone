@@ -4,8 +4,7 @@ import { Button, Container, Toast, ToastHeader, Spinner, ToastBody } from 'react
 import { patchUserPomo } from '../../auth/userManager'
 import TaskManager from '../../modules/TaskManager'
 
-import InProgressTasks from '../Tasks/TasksInProgress'
-
+import TimerTasks from './TimerTasks'
 
 
 
@@ -29,10 +28,6 @@ export default class Timer extends Component {
     this.setState({
       showLong: !this.state.showLong
     });
-  }
-
-  patchTask = (task, taskId) => {
-    TaskManager.patchTask(task, taskId)
   }
 
   handleBreaks = (pomoCount) => {
@@ -146,7 +141,7 @@ export default class Timer extends Component {
             </Toast>
           </div>
         </Container>
-        <InProgressTasks {...this.props} tasks={inProgressTasks} patchTask={this.patchTask} />
+        <TimerTasks {...this.props} tasks={inProgressTasks} patchTask={this.props.patchTask} />
       </>
     );
   }
