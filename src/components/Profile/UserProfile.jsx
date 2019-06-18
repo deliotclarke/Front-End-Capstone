@@ -26,15 +26,12 @@ export default class UserProfile extends Component {
         savePhoto({
           userImage: url
         }, this.props.user.id)
-      })
-      .then(() => {
-
-        this.setState({
-          userHasImage: true,
-          userImage: this.props.user.userImage
-        })
-        this.props.history.push('/profile')
-
+          .then(() => {
+            this.props.refreshUser()
+            debugger
+            this.setState({ userImage: this.props.user.userImage })
+            this.props.history.push('/profile')
+          })
       })
   }
 
@@ -43,7 +40,10 @@ export default class UserProfile extends Component {
       userImage: ""
     }, this.props.user.id)
       .then(() => {
-        this.setState({ userHasImage: false })
+        this.setState({
+          userHasImage: false,
+          userImage: ""
+        })
         this.props.history.push('/profile')
       })
   }

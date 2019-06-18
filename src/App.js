@@ -24,6 +24,12 @@ class App extends Component {
       })
   }
 
+  refreshUser = () => {
+    let updatedUser = getUserFromLocalStorage()
+    this.setState({ user: updatedUser })
+    debugger
+  }
+
   render() {
     return (
       <div className="App">
@@ -34,7 +40,7 @@ class App extends Component {
             return this.state.user ? (
               <>
                 <NavBar {...props} user={this.state.user} onLogout={this.logout} />
-                <AppViews {...props} user={this.state.user} />
+                <AppViews {...props} user={this.state.user} refreshUser={this.refreshUser} />
               </>
             ) : (
                 <Redirect to="/login" />
