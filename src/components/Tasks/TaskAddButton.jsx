@@ -134,7 +134,7 @@ class TaskAdd extends Component {
                     <option value="todo">To Do</option>
                     <option value="inprogress">In Progress</option>
                     <option value="done">Done</option>
-                  </Input>
+                  </Input >
                   <InputGroupAddon addonType="append">
                     <InputGroupText style={{ backgroundColor: "#488C66", border: "1px #488C66 solid", color: "#F7F6F6" }}>Category</InputGroupText>
                   </InputGroupAddon>

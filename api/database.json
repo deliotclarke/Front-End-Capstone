@@ -5,8 +5,8 @@
       "username": "user0",
       "email": "user0@email.com",
       "password": "",
-      "userImage": "https://firebasestorage.googleapis.com/v0/b/fecapstone-eliot.appspot.com/o/profiles%2Fprofile-photo-1560802301510?alt=media&token=130c4b0d-9cde-4b45-a2d0-d38bc0ebafd3",
-      "pomoCounter": 6,
+      "userImage": "",
+      "pomoCounter": 0,
       "id": "9v5xQ2XvRzNT3ESuq96DmDai1os2"
     },
     {
@@ -127,6 +127,28 @@
       "selected": false,
       "completed": false,
       "id": 10
+    },
+    {
+      "userId": "GPkWevKyV8eW9qgThqqBprWRyl92",
+      "title": "show a task",
+      "notes": "to bryan",
+      "timestamp": 1560867378507,
+      "category": "done",
+      "showOnTimer": false,
+      "selected": false,
+      "completed": false,
+      "id": 11
+    },
+    {
+      "userId": "GPkWevKyV8eW9qgThqqBprWRyl92",
+      "title": "this is for in progress",
+      "notes": "in progress",
+      "timestamp": 1560867571653,
+      "category": "inprogress",
+      "showOnTimer": true,
+      "selected": false,
+      "completed": false,
+      "id": 12
     }
   ]
 }
