@@ -8,8 +8,7 @@ import TaskNav from './Tasks/TaskNav'
 
 import Timer from './Pomo/Timer'
 import Profile from './Profile/UserProfile'
-import LandingScreen from './Landing/LandingScreen';
-
+import LandingScreen from './Landing/LandingScreen'
 
 class AppViews extends Component {
 
@@ -65,6 +64,15 @@ class AppViews extends Component {
       .then(() => this.props.history.push(`/tasks/${goto}`))
   }
 
+  patchTask = (task, taskId) => {
+    TaskManager.patchTask(task, taskId)
+      .then(() => TaskManager.getAll())
+      .then(tasks => {
+        this.setState({ tasks: tasks })
+      })
+    // .then(() => this.props.history.push(`/tasks/${task.category}`))
+  }
+
   componentDidMount() {
     const newState = {}
 
@@ -88,7 +96,7 @@ class AppViews extends Component {
           return (
             <>
               <TaskAdd {...props} user={this.props.user} addTask={this.addTask} handleDelete={this.handleDelete} tasks={currentUserTasks} />
-              <TaskViews {...props} user={this.props.user} tasks={currentUserTasks} patchCategory={this.patchCategory} editPatch={this.editPatch} />
+              <TaskViews {...props} user={this.props.user} tasks={currentUserTasks} patchCategory={this.patchCategory} editPatch={this.editPatch} patchTask={this.patchTask} />
               <TaskNav />
             </>
           )
@@ -98,7 +106,7 @@ class AppViews extends Component {
           let currentUserTasks = this.state.tasks.filter(task => {
             return task.userId === this.props.user.id
           })
-          return <Timer {...props} {...this.props} user={this.props.user} tasks={currentUserTasks} editPatch={this.editPatch} patchCategory={this.patchCategory} />
+          return <Timer {...props} {...this.props} user={this.props.user} tasks={currentUserTasks} patchTask={this.patchTask} />
         }} />
         <Route exact path="/profile" render={(props) => {
           return <Profile {...props} {...this.props} user={this.props.user} />

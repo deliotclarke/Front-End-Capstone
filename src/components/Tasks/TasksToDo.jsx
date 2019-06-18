@@ -12,7 +12,7 @@ export default class TasksToDo extends Component {
 
     return (
       <>
-        <Container>
+        <Container style={{ marginBottom: "5rem" }}>
           <CardColumns>
             <h2 className="mt-4" style={{ color: "#3F7255" }}>To Do</h2>
             {

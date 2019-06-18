@@ -6,7 +6,7 @@
       "email": "user0@email.com",
       "password": "",
       "userImage": "",
-      "pomoCounter": 0,
+      "pomoCounter": 2,
       "id": "9v5xQ2XvRzNT3ESuq96DmDai1os2"
     },
     {
@@ -55,7 +55,7 @@
       "userId": "9v5xQ2XvRzNT3ESuq96DmDai1os2",
       "title": "category logic",
       "notes": "working on saving the category with state, but also working out the logic of showing it on the timer and whether it's completed by the category it's added under.",
-      "timestamp": 1560276184344,
+      "timestamp": 1560886907910,
       "category": "inprogress",
       "showOnTimer": true,
       "selected": false,
@@ -88,7 +88,7 @@
       "userId": "9v5xQ2XvRzNT3ESuq96DmDai1os2",
       "title": "words words 2",
       "notes": "kdkdjfk",
-      "timestamp": 1560800238412,
+      "timestamp": 1560886491391,
       "category": "todo",
       "showOnTimer": true,
       "selected": false,
@@ -149,6 +149,17 @@
       "selected": false,
       "completed": false,
       "id": 12
+    },
+    {
+      "userId": "9v5xQ2XvRzNT3ESuq96DmDai1os2",
+      "title": "an in progress title",
+      "notes": "you know what a title is for right? it's for telling you the title of stuff. this one is in progress.",
+      "timestamp": 1560886537575,
+      "category": "inprogress",
+      "showOnTimer": true,
+      "selected": false,
+      "completed": false,
+      "id": 13
     }
   ]
 }
