@@ -47,6 +47,7 @@ export default class UserProfile extends Component {
 
   render() {
 
+    // !! turns the "variable" into a boolean
     const visible = !!this.props.user.userImage ? "" : "none"
     const invisible = !!this.props.user.userImage ? "none" : ""
 
