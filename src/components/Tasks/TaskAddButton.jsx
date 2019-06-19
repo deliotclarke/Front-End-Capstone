@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import TaskManager from '../../modules/TaskManager'
 
 import {
   Button,

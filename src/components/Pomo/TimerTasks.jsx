@@ -13,7 +13,7 @@ export default class TimerTasks extends Component {
       <>
         <Container>
           <CardColumns>
-            <h3 className="mt-4" style={{ color: "#3F7255" }}>Current Tasks</h3>
+            <h3 className="mt-4" style={{ color: "#3F7255", borderBottom: "1px solid #488C66" }}>Current Tasks</h3>
             {
               this.props.tasks.map(task =>
                 <TimerTaskCard key={task.id} task={task} {...this.props} />

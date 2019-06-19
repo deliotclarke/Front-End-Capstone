@@ -33,7 +33,7 @@ export default class TaskCard extends Component {
 
     return (
       <>
-        <Card body>
+        <Card body style={{ boxShadow: "" }}>
           <CardTitle><FormGroup check inline>
             <Label check>
               <Input type="checkbox"
@@ -50,8 +50,8 @@ export default class TaskCard extends Component {
           <div>
             <Button
               id={`toggleCollapse_${this.props.task.id}`}
-              size="med"
-              style={{ backgroundColor: "#3F7255", border: "none", float: "right" }}
+              size="sm"
+              style={{ backgroundColor: "#3F7255", border: "none", float: "right", display: "inline-block" }}
               onClick={this.toggleCollapse}>
               <FaEllipsisH />
             </Button>

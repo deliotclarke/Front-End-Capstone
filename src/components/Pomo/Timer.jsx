@@ -6,7 +6,6 @@ import { patchUserPomo } from '../../auth/userManager'
 import TimerTasks from './TimerTasks'
 
 
-
 export default class Timer extends Component {
   state = {
     minutes: "00",
@@ -114,12 +113,13 @@ export default class Timer extends Component {
     let inProgressTasks = this.props.tasks.filter(task => {
       return task.category === "inprogress"
     })
+    const startResetColor = !this.state.counting ? "#89AB92" : "#C27D78"
     return (
       <>
         <Container style={{ textAlign: "center" }}>
-          <h1 style={{ fontSize: "6rem" }}>{this.state.minutes}:{this.state.seconds}</h1>
+          <h1 style={{ fontSize: "6rem" }}>[{this.state.minutes}:{this.state.seconds}]</h1>
           <h6>Pomo Counter: {this.props.user.pomoCounter}</h6>
-          <Button value="start" style={{ boxShadow: "none" }} onClick={() => this.handleStart()}>Start/Reset</Button>
+          <Button value="start" style={{ boxShadow: "none", backgroundColor: `${startResetColor}`, border: "none" }} onClick={() => this.handleStart()}>Start/Reset</Button>
           <div>
             <Toast isOpen={this.state.showLong} style={{ marginTop: "1rem" }}>
               <ToastHeader toggle={this.toggleLong} icon={<Spinner size="sm" />}>Long Break!</ToastHeader>
