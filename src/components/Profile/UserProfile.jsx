@@ -4,7 +4,7 @@ import 'firebase/storage';
 import { savePhoto } from '../../auth/userManager'
 
 import { Jumbotron, Container, Input, Button, FormGroup, FormText } from 'reactstrap';
-import { FaPortrait, FaPlusSquare, FaTimesCircle, FaPlusCircle } from 'react-icons/fa';
+import { FaPortrait, FaTimesCircle, FaPlusCircle } from 'react-icons/fa';
 
 
 export default class UserProfile extends Component {
@@ -27,7 +27,6 @@ export default class UserProfile extends Component {
         }, this.props.user.id)
           .then(() => {
             this.props.refreshUserImage(url)
-            debugger
             this.props.history.push('/profile')
           })
       })
@@ -38,7 +37,7 @@ export default class UserProfile extends Component {
       userImage: ""
     }, this.props.user.id)
       .then(() => {
-        this.props.refreshUser("")
+        this.props.refreshUserImage("")
         this.props.history.push('/profile')
       })
   }
