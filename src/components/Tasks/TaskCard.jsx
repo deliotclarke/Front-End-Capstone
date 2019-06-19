@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Card, CardTitle, CardText, CardBody, Collapse, Label, Button, ButtonGroup, FormGroup, Input } from 'reactstrap'
+import { Card, CardTitle, Collapse, Label, Button, ButtonGroup, FormGroup, Input } from 'reactstrap'
 
 import { FaEllipsisH } from 'react-icons/fa';
 
