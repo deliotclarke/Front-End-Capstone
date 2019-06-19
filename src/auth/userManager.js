@@ -13,7 +13,6 @@ export const savePhoto = (photoObj, userId) => {
   return patchUser(photoObj, userId)
     .then(currentUser => {
       setUserInLocalStorage(currentUser);
-      debugger
       return currentUser;
     })
 }
