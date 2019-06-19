@@ -61,14 +61,11 @@ export const login = (email, password) => {
       return getUser(firebaseId);
     })
     .then(userFromJson => {
-      console.log(userFromJson)
       setUserInLocalStorage(userFromJson);
       return userFromJson;
     })
     .catch(error => {
-      console.log(error);
-      //error + error message sent to user alert
-      alert(`something went terribly wrong...${error.message}`);
+      alert("something went real bad...", error)
     })
 }
 

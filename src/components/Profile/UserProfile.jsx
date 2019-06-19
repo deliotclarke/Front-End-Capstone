@@ -88,6 +88,7 @@ export default class UserProfile extends Component {
                   <Input
                     type="file"
                     label="photo"
+                    style={{ boxShadow: "none", outline: "none" }}
                     onChange={(e) => this.setState({ photoToSave: e.target.files[0] })}
                     placeholder="photo" />
                   <Button size="sm" className="btn" style={{ backgroundColor: "#488C66", border: "none" }} onClick={this.saveNewPhoto}><FaPlusCircle /></Button>

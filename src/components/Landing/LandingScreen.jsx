@@ -11,7 +11,7 @@ export default class LandingScreen extends Component {
       <>
         <div className="main-body">
           <Container>
-            <h2 style={{ textAlign: "center", paddingTop: "1rem" }}>Welcome, {this.props.user.username}!</h2>
+            <h2 style={{ textAlign: "center", paddingTop: "1rem", color: "#89AB92", borderBottom: "1px solid #89AB92" }}>Welcome, {this.props.user.username}!</h2>
             <br />
             <div>
               <p className="lead">This is <span style={{ color: "#3F7255", fontWeight: "700" }}>Resolute.</span> <br /><br />We're here to help you <br /><strong>get organized</strong>, <strong>get to work</strong> and <br /><strong>reach your goals</strong>.<br /><br />We utilize a mini <span style={{ color: "#3F7255", fontWeight: "600" }}>Kanban Board</span> and the <span style={{ fontWeight: "600", color: "#BF4D43" }}>Pomodoro Technique</span> to help you get on track and stay there.<br /><br />If this is your first introduction to the <span style={{ fontWeight: "600", color: "#BF4D43" }}>Pomodoro Technique</span> or your first time here, click the button below to see suggestion for utilizing our app.</p>
@@ -40,8 +40,8 @@ export default class LandingScreen extends Component {
                     <li>If you decide you'd like to remove a task entirely, just click the title of as many as you'd like to delete and press the <FaTimes /> button. Any task that has turned red and striked out will be removed permanently, so feel free to track finished tasks by leaving them on your Done board.</li>
                   </ul>
 
-                  <h6 className="mt-5">“Divide each difficulty into as many parts as is feasible and necessary to resolve it.” </h6>
-                  <h6 style={{ float: "right" }}>― René Descartes</h6>
+                  <h6 className="mt-5" style={{ color: "#C27D78" }}>“Divide each difficulty into as many parts as is feasible and necessary to resolve it.” </h6>
+                  <h6 style={{ float: "right", color: "#89AB92" }}>― René Descartes</h6>
                 </CardBody>
               </Card>
             </UncontrolledCollapse>
