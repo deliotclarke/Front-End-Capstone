@@ -16,19 +16,28 @@ class App extends Component {
   }
 
   logout = () => {
-    let clearPomoCount = { pomoCounter: 0 }
-    patchUserPomo(clearPomoCount, this.state.user.id)
+    let currentCount = this.state.user.pomoCounter
+    let permaCount = currentCount + this.state.user.permaPomoCounter
+    patchUserPomo({
+      pomoCounter: 0,
+      permaPomoCounter: permaCount
+    }, this.state.user.id)
       .then(() => {
         localStorage.removeItem('user');
         this.setState({ user: "" })
       })
   }
 
-  refreshUser = (newUrl) => {
+  refreshUserImage = (newUrl) => {
     let currentUser = { ...this.state.user }
     currentUser.userImage = newUrl
     this.setState({ user: currentUser })
-    debugger
+  }
+
+  refreshUserPomo = (newCount) => {
+    let currentUser = { ...this.state.user }
+    currentUser.pomoCounter = newCount
+    this.setState({ user: currentUser })
   }
 
   render() {
@@ -41,7 +50,7 @@ class App extends Component {
             return this.state.user ? (
               <>
                 <NavBar {...props} user={this.state.user} onLogout={this.logout} />
-                <AppViews {...props} user={this.state.user} refreshUser={this.refreshUser} />
+                <AppViews {...props} user={this.state.user} refreshUserImage={this.refreshUserImage} refreshUserPomo={this.refreshUserPomo} />
               </>
             ) : (
                 <Redirect to="/login" />
