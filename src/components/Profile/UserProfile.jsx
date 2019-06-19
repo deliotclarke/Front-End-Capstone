@@ -100,7 +100,7 @@ export default class UserProfile extends Component {
             <br />
             <p className="lead" style={{ borderBottom: "solid 1px #488C66", display: "inline-block" }}>Name: {this.props.user.name}</p>
             <p className="lead" style={{ borderBottom: "solid 1px #488C66", display: "inline-block" }}>Email: {this.props.user.email}</p>
-            <p className="lead" style={{ borderBottom: "solid 1px #488C66", display: "inline-block" }}>Total Pomodoros:</p>
+            <p className="lead" style={{ borderBottom: "solid 1px #488C66", display: "inline-block" }}>Total Pomodoros: {this.props.user.permaPomoCounter}</p>
           </Container>
         </Jumbotron>
       </>

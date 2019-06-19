@@ -6,9 +6,9 @@
       "email": "user0@email.com",
       "password": "",
       "userImage": "",
-      "pomoCounter": 5,
+      "pomoCounter": 0,
       "id": "9v5xQ2XvRzNT3ESuq96DmDai1os2",
-      "permaPomoCounter": null
+      "permaPomoCounter": 6
     },
     {
       "name": "User One",
@@ -99,7 +99,7 @@
       "userId": "9v5xQ2XvRzNT3ESuq96DmDai1os2",
       "title": "words words 2",
       "notes": "kdkdjfk",
-      "timestamp": 1560886491391,
+      "timestamp": 1560958847983,
       "category": "todo",
       "showOnTimer": true,
       "selected": false,

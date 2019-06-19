@@ -120,7 +120,14 @@ export default class TaskCard extends Component {
                 style={{ display: "none" }}
               />
               <h4
-                style={{ display: `${visibleInline}`, textDecoration: `${strikeThrough}`, color: `${textColor}` }}>
+                style={{
+                  display: `${visibleInline}`,
+                  textDecoration: `${strikeThrough}`,
+                  color: `${textColor}`,
+                  borderBottom: "solid 1px #488C66",
+                  // borderLeft: "solid 1px #488C66",
+                  paddingLeft: ".2rem"
+                }}>
                 {this.props.task.title}</h4>
             </Label>
             <Input type="text"

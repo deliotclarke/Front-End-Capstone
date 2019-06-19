@@ -16,8 +16,12 @@ class App extends Component {
   }
 
   logout = () => {
-    let clearPomoCount = { pomoCounter: 0 }
-    patchUserPomo(clearPomoCount, this.state.user.id)
+    let currentCount = this.state.user.pomoCounter
+    let permaCount = currentCount + this.state.user.permaPomoCounter
+    patchUserPomo({
+      pomoCounter: 0,
+      permaPomoCounter: permaCount
+    }, this.state.user.id)
       .then(() => {
         localStorage.removeItem('user');
         this.setState({ user: "" })
