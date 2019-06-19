@@ -35,7 +35,6 @@ export const patchUserPomo = (userObj, userId) => {
     })
 }
 
-//user will have name, username, email and password
 //this is the mother function
 export const register = (user) => {
   //using returns keeps the promise rolling through
