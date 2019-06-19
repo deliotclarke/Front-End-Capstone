@@ -26,7 +26,7 @@ export default class UserProfile extends Component {
           userImage: url
         }, this.props.user.id)
           .then(() => {
-            this.props.refreshUser(url)
+            this.props.refreshUserImage(url)
             debugger
             this.props.history.push('/profile')
           })

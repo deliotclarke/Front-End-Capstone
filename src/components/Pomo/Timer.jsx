@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { Button, Container, Toast, ToastHeader, Spinner, ToastBody } from 'reactstrap'
 
 import { patchUserPomo } from '../../auth/userManager'
-import TaskManager from '../../modules/TaskManager'
 
 import TimerTasks from './TimerTasks'
 
@@ -13,7 +12,6 @@ export default class Timer extends Component {
     minutes: "00",
     seconds: "03",
     counting: false,
-    pomoCounter: this.props.user.pomoCounter,
     showShort: false,
     showLong: false
   }
@@ -55,15 +53,14 @@ export default class Timer extends Component {
 
         if (this.state.minutes === "00" && this.state.seconds === "00") {
 
-          let keepPomoCount = this.state.pomoCounter;
+          let keepPomoCount = this.props.user.pomoCounter;
           keepPomoCount++;
 
-          let newPomoCountObj = {
+          patchUserPomo({
             pomoCounter: keepPomoCount
-          }
-
-          patchUserPomo(newPomoCountObj, this.props.user.id)
+          }, this.props.user.id)
             .then(() => {
+              this.props.refreshUserPomo(keepPomoCount)
               this.props.history.push('/timer')
             })
 
@@ -71,7 +68,6 @@ export default class Timer extends Component {
             minutes: "00",
             seconds: "03",
             counting: !this.state.counting,
-            pomoCounter: keepPomoCount
           })
           clearInterval(interval)
           this.handleBreaks(keepPomoCount)
@@ -122,7 +118,7 @@ export default class Timer extends Component {
       <>
         <Container style={{ textAlign: "center" }}>
           <h1 style={{ fontSize: "6rem" }}>{this.state.minutes}:{this.state.seconds}</h1>
-          <h6>Pomo Counter: {this.state.pomoCounter}</h6>
+          <h6>Pomo Counter: {this.props.user.pomoCounter}</h6>
           <Button value="start" style={{ boxShadow: "none" }} onClick={() => this.handleStart()}>Start/Reset</Button>
           <div>
             <Toast isOpen={this.state.showLong} style={{ marginTop: "1rem" }}>
