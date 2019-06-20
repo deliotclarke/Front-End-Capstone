@@ -6,9 +6,9 @@
       "email": "user0@email.com",
       "password": "",
       "userImage": "",
-      "pomoCounter": 2,
+      "pomoCounter": 1,
       "id": "9v5xQ2XvRzNT3ESuq96DmDai1os2",
-      "permaPomoCounter": 13
+      "permaPomoCounter": 17
     },
     {
       "name": "User One",
@@ -86,28 +86,6 @@
     },
     {
       "userId": "9v5xQ2XvRzNT3ESuq96DmDai1os2",
-      "title": "a whole new world",
-      "notes": "let's try again",
-      "timestamp": 1560443795461,
-      "category": "todo",
-      "showOnTimer": true,
-      "selected": false,
-      "completed": false,
-      "id": 6
-    },
-    {
-      "userId": "9v5xQ2XvRzNT3ESuq96DmDai1os2",
-      "title": "words words 2",
-      "notes": "kdkdjfk",
-      "timestamp": 1560958847983,
-      "category": "todo",
-      "showOnTimer": true,
-      "selected": false,
-      "completed": false,
-      "id": 7
-    },
-    {
-      "userId": "9v5xQ2XvRzNT3ESuq96DmDai1os2",
       "title": "to edit 2",
       "notes": "to edit some more 2",
       "timestamp": 1560797578001,
@@ -171,6 +149,17 @@
       "selected": false,
       "completed": false,
       "id": 13
+    },
+    {
+      "userId": "9v5xQ2XvRzNT3ESuq96DmDai1os2",
+      "title": "make sure bito doesn't choke",
+      "notes": "like everyday",
+      "timestamp": 1561002246652,
+      "category": "inprogress",
+      "showOnTimer": false,
+      "selected": false,
+      "completed": false,
+      "id": 14
     }
   ]
 }
