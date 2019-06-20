@@ -6,9 +6,13 @@
       "email": "user0@email.com",
       "password": "",
       "userImage": "",
-      "pomoCounter": 1,
+      "pomoCounter": 0,
       "id": "9v5xQ2XvRzNT3ESuq96DmDai1os2",
+<<<<<<< HEAD
       "permaPomoCounter": 17
+=======
+      "permaPomoCounter": 18
+>>>>>>> master
     },
     {
       "name": "User One",
@@ -37,6 +41,40 @@
       "pomoCounter": 0,
       "permaPomoCounter": 0,
       "id": "MQvkxbI7cdUrC8Mu9go0s8ff4AB2"
+    },
+    {
+      "name": "User Zero",
+      "username": "user0",
+      "email": "email@email.com",
+      "password": "",
+      "userImage": "",
+      "validate": {
+        "email": "isValid"
+      },
+      "pomoCounter": 0,
+      "disableSubmit": false,
+      "id": "wrJCnG7r47aLuYmYpcHWrJITOdw1",
+      "permaPomoCounter": null
+    },
+    {
+      "name": "Bryan Nilsen",
+      "username": "bryfive13",
+      "email": "nohighfiveleftbehind@email.com",
+      "password": "",
+      "userImage": "",
+      "pomoCounter": 0,
+      "permaPomoCounter": 0,
+      "id": "MZFKQhZND0NKBcd9RHFu3cOMd4x1"
+    },
+    {
+      "name": "User Two",
+      "username": "user2",
+      "email": "user2@email.com",
+      "password": "",
+      "userImage": "",
+      "pomoCounter": 0,
+      "permaPomoCounter": 1,
+      "id": "CHTUsWRBpZcw0oWZveEe6UiPWqR2"
     }
   ],
   "tasks": [

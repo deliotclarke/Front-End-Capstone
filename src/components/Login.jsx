@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { login } from '../auth/userManager'
+import { errorDict } from '../auth/userManager'
 
-import { Container, Form, FormGroup, Label, Input, Jumbotron, Button, FormFeedback } from 'reactstrap'
+import { Container, Form, FormGroup, Label, Input, Jumbotron, Button, FormFeedback, Toast, ToastHeader, ToastBody } from 'reactstrap'
 
 export default class Register extends Component {
 
@@ -12,7 +13,9 @@ export default class Register extends Component {
     validate: {
       email: ''
     },
-    disableSubmit: true
+    disableSubmit: true,
+    showError: false,
+    errorMessage: ""
   }
 
   submit = () => {
@@ -20,6 +23,9 @@ export default class Register extends Component {
       .then(user => {
         this.props.onLogin(user);
         this.props.history.push('/');
+      })
+      .catch(error => {
+        this.handleError(errorDict[error.code])
       })
   }
 
@@ -34,6 +40,20 @@ export default class Register extends Component {
       this.setState({ disableSubmit: true })
     }
     this.setState({ validate })
+  }
+
+  handleError = (errorString) => {
+    this.setState({
+      errorMessage: errorString,
+      showError: !this.state.showError
+    })
+
+  }
+
+  closeError = () => {
+    this.setState({
+      showError: !this.state.showError
+    });
   }
 
   render() {
@@ -84,6 +104,12 @@ export default class Register extends Component {
           <p className="lead text-right mt-1">Not a user?
             <Link to="/register"> Register here</Link>
           </p>
+          <Toast isOpen={this.state.showError} style={{ marginTop: "1rem" }}>
+            <ToastHeader toggle={this.closeError} style={{ color: "#BF4D43" }} >Uh ohhhhhhh!</ToastHeader>
+            <ToastBody>
+              {this.state.errorMessage}
+            </ToastBody>
+          </Toast>
         </Container>
       </Jumbotron >
     )

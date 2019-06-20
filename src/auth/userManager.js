@@ -38,6 +38,7 @@ export const patchUserPomo = (userObj, userId) => {
 //this is the mother function
 export const register = (user) => {
   //using returns keeps the promise rolling through
+
   return registerWithFirebase(user.email, user.password)
     .then(firebaseId => {
       user.id = firebaseId;
@@ -47,10 +48,6 @@ export const register = (user) => {
     .then(newUserFromJson => {
       setUserInLocalStorage(newUserFromJson);
       return newUserFromJson;
-    })
-    .catch(error => {
-      console.log(error);
-      alert('oh noooooo');
     })
 }
 
@@ -62,9 +59,6 @@ export const login = (email, password) => {
     .then(userFromJson => {
       setUserInLocalStorage(userFromJson);
       return userFromJson;
-    })
-    .catch(error => {
-      alert("something went real bad...", error)
     })
 }
 
@@ -109,4 +103,11 @@ export const loginWithFirebase = (email, password) => {
 
 const setUserInLocalStorage = (user) => {
   localStorage.setItem('user', JSON.stringify(user));
+}
+
+export const errorDict = {
+  "auth/user-not-found": "sorry! looks like you don't exist, let's get you registered.",
+  "auth/wrong-password": "your password doesn't match our records, did you try that other one yet?",
+  "auth/email-already-in-use": "sorry! that email address is already registered, maybe you meant to login.",
+  "auth/weak-password": "weeeeeaaaak! your password is weak, dawg. we need at least 6 characters"
 }
