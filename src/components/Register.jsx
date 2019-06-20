@@ -72,7 +72,7 @@ export default class Register extends Component {
   }
 
   render() {
-
+    const colorFlip = !this.state.disableSubmit ? "#488C66" : "#C27D78"
     return (
 
       <Jumbotron className="mx-auto" style={{ backgroundColor: "white" }} fluid>
@@ -133,7 +133,7 @@ export default class Register extends Component {
             </FormGroup>
 
             <Button
-              style={{ backgroundColor: "#488C66", borderColor: "#488C66" }}
+              style={{ backgroundColor: `${colorFlip}`, borderColor: `${colorFlip}` }}
               onClick={() => this.submit()}
               disabled={this.state.disableSubmit}
             >Register</Button>
