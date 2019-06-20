@@ -58,8 +58,8 @@
       "email": "nohighfiveleftbehind@email.com",
       "password": "",
       "userImage": "https://firebasestorage.googleapis.com/v0/b/fecapstone-eliot.appspot.com/o/profiles%2Fprofile-photo-1561049748324?alt=media&token=4c779eda-0804-4733-a419-54325b01f151",
-      "pomoCounter": 1,
-      "permaPomoCounter": 0,
+      "pomoCounter": 0,
+      "permaPomoCounter": 1,
       "id": "MZFKQhZND0NKBcd9RHFu3cOMd4x1"
     },
     {
@@ -231,8 +231,8 @@
     {
       "userId": "MZFKQhZND0NKBcd9RHFu3cOMd4x1",
       "title": "bring a lunch",
-      "notes": "pack it in my favorite giraffe lunchbox",
-      "timestamp": 1561050224303,
+      "notes": "pack it in my favorite giraffe lunchbox. it's the coolest. giraffes are the best. if i was a giraffe i would go to every concert and have the best seat in the house.",
+      "timestamp": 1561050863131,
       "category": "todo",
       "showOnTimer": false,
       "selected": false,
