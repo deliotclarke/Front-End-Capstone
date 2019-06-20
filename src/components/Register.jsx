@@ -1,29 +1,40 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { register } from '../auth/userManager'
+import { errorDict } from '../auth/userManager'
+import { goToAnchor } from 'react-scrollable-anchor'
 
-import { Container, Form, FormGroup, Label, Input, Jumbotron, Button, FormFeedback } from 'reactstrap'
+import { Container, Form, FormGroup, Label, Input, Jumbotron, Button, FormFeedback, Toast, ToastHeader, ToastBody } from 'reactstrap'
+import ScrollableAnchor from 'react-scrollable-anchor'
 
 export default class Register extends Component {
 
   state = {
-    name: '',
-    username: '',
-    email: '',
-    password: '',
-    userImage: '',
+    user: {
+      name: '',
+      username: '',
+      email: '',
+      password: '',
+      userImage: '',
+      pomoCounter: 0,
+      permaPomoCounter: 0,
+    },
     validate: {
       email: ''
     },
-    pomoCounter: 0,
-    disableSubmit: true
+    disableSubmit: true,
+    showError: false,
+    errorMessage: ""
   }
 
   submit = () => {
-    register(this.state)
+    register(this.state.user)
       .then(newUser => {
         this.props.onRegister(newUser);
         this.props.history.push('/');
+      })
+      .catch(error => {
+        this.handleError(errorDict[error.code])
       })
   }
 
@@ -40,7 +51,28 @@ export default class Register extends Component {
     this.setState({ validate })
   }
 
+  storeUser = (e) => {
+    const { user } = this.state
+    user[e.target.id] = e.target.value
+    this.setState({ user })
+  }
+
+  handleError = (errorString) => {
+    this.setState({
+      errorMessage: errorString,
+      showError: !this.state.showError
+    })
+    goToAnchor("error")
+  }
+
+  closeError = () => {
+    this.setState({
+      showError: !this.state.showError
+    });
+  }
+
   render() {
+
     return (
 
       <Jumbotron className="mx-auto" style={{ backgroundColor: "white" }} fluid>
@@ -55,7 +87,7 @@ export default class Register extends Component {
                 name="name"
                 id="name"
                 placeholder="full name"
-                onChange={(e) => { this.setState({ name: e.target.value }) }} />
+                onChange={(e) => { this.storeUser(e) }} />
             </FormGroup>
 
             <FormGroup>
@@ -65,7 +97,7 @@ export default class Register extends Component {
                 name="username"
                 id="username"
                 placeholder="username"
-                onChange={(e) => { this.setState({ username: e.target.value }) }} />
+                onChange={(e) => { this.storeUser(e) }} />
             </FormGroup>
 
             <FormGroup>
@@ -79,7 +111,7 @@ export default class Register extends Component {
                 invalid={this.state.validate.email === "isInvalid"}
                 onChange={(e) => {
                   this.validateEmail(e)
-                  this.setState({ email: e.target.value })
+                  this.storeUser(e)
                 }} />
               <FormFeedback valid>
                 Perrrrrrfect.
@@ -97,7 +129,7 @@ export default class Register extends Component {
                 name="password"
                 id="password"
                 placeholder="password"
-                onChange={(e) => { this.setState({ password: e.target.value }) }} />
+                onChange={(e) => { this.storeUser(e) }} />
             </FormGroup>
 
             <Button
@@ -109,6 +141,16 @@ export default class Register extends Component {
           <p className="lead text-right mt-1">Already a user?
             <Link to="/login"> Login here</Link>
           </p>
+          <ScrollableAnchor id={"error"}>
+            <div>
+              <Toast isOpen={this.state.showError} style={{ marginTop: "1rem" }}>
+                <ToastHeader toggle={this.closeError} style={{ color: "#BF4D43" }} >Uh ohhhhhhh!</ToastHeader>
+                <ToastBody>
+                  {this.state.errorMessage}
+                </ToastBody>
+              </Toast>
+            </div>
+          </ScrollableAnchor>
         </Container>
       </Jumbotron >
     )
