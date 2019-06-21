@@ -6,6 +6,8 @@ import { savePhoto } from '../../auth/userManager'
 import { Jumbotron, Container, Input, Button, FormGroup, FormText } from 'reactstrap';
 import { FaPortrait, FaTimesCircle, FaPlusCircle } from 'react-icons/fa';
 
+import DefaultImage from './big-green.png'
+
 
 export default class UserProfile extends Component {
 
@@ -72,7 +74,9 @@ export default class UserProfile extends Component {
                   width: "125px",
                   borderRadius: "50%"
                 }} src={this.props.user.userImage} alt="" />
-              <FaPortrait
+              <img
+                src={DefaultImage}
+                alt="no user pic"
                 style={{
                   display: `${invisible}`,
                   verticalAlign: "center",
