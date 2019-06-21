@@ -1,6 +1,8 @@
 import React from 'react';
 import { NavLink as RRNavLink } from 'react-router-dom'
-import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
+import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap'
+
+import MountainLogo from './white-mountains.png'
 
 
 class NavBar extends React.Component {
@@ -24,7 +26,7 @@ class NavBar extends React.Component {
       <div>
         <Navbar color="faded" style={{ backgroundColor: "#488C66", fontFamily: 'Roboto' }} light>
           <NavbarToggler onClick={this.toggleNavbar} className="mr-2" style={{ outline: "none" }} />
-          <NavbarBrand href="/" style={{ color: '#F7F6F6' }}>resolute.</NavbarBrand>
+          <NavbarBrand href="/" style={{ color: '#F7F6F6' }}><img src={MountainLogo} alt="Mountain Logo" style={{ height: "3.3rem", width: "auto", right: "6.5rem", top: ".08rem", position: "absolute", color: "black" }} />resolute.</NavbarBrand>
           <Collapse isOpen={!this.state.collapsed} navbar>
             <Nav navbar>
               <NavItem>

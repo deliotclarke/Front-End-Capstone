@@ -5,6 +5,8 @@ import { errorDict } from '../auth/userManager'
 
 import { Container, Form, FormGroup, Label, Input, Jumbotron, Button, FormFeedback, Toast, ToastHeader, ToastBody } from 'reactstrap'
 
+import MountainLogo from './green-mountains.png'
+
 export default class Register extends Component {
 
   state = {
@@ -62,7 +64,7 @@ export default class Register extends Component {
 
       <Jumbotron className="mx-auto" style={{ backgroundColor: "white" }} fluid>
         <Container fluid>
-          <h3 className="display-4 text-right" style={{ color: "#488C66" }}>Resolute.</h3>
+          <h3 className="display-4 text-right" style={{ color: "#488C66" }}><img src={MountainLogo} alt="green logo" style={{ height: "3rem", width: "auto", display: "inline-block", paddingBottom: ".5rem" }} />Resolute.</h3>
           <p className="lead text-right">Let's get on track</p>
           <Form className="border rounded border-faded p-2 mx-auto clear-fix">
             <FormGroup>
