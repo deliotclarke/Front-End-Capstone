@@ -12,7 +12,8 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 
 
 // Initialize Firebase
-firebase.initializeApp(firebaseConfig);
+const app = firebase.initializeApp(firebaseConfig);
+const base = Rebase.createClass(app.database())
 
 ReactDOM.render(<App />, document.getElementById('root'));
 
@@ -20,3 +21,5 @@ ReactDOM.render(<App />, document.getElementById('root'));
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.unregister();
+
+export { base }
