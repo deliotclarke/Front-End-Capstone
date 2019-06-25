@@ -4,6 +4,8 @@ import './index.css'
 import App from './App'
 import * as serviceWorker from './serviceWorker'
 import * as firebase from 'firebase/app'
+import 'firebase/database'
+import Rebase from 're-base'
 import firebaseConfig from './auth/APIconfig'
 
 import 'bootstrap/dist/css/bootstrap.min.css'
