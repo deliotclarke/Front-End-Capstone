@@ -8,12 +8,13 @@ export default {
     return fetch(`${url}.json`)
       .then(res => res.json())
       .then(firebaseObj => {
-        if (firebaseObj) {
-          let actualData = Object.keys(firebaseObj).map(id => {
-            firebaseObj[id].id = id
-            return firebaseObj
+        if (firebaseObj !== null) {
+          const taskArray = Object.keys(firebaseObj).map(keys => {
+            let newObj = { ...firebaseObj[keys] }
+            newObj.id = keys
+            return newObj
           })
-          return actualData
+          return taskArray.reverse()
         } else {
           let tasks = []
           return tasks

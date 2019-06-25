@@ -29,6 +29,7 @@ class App extends Component {
       .then(() => {
         localStorage.removeItem('user');
         this.setState({ user: "" })
+        debugger
       })
   }
 
@@ -56,23 +57,12 @@ class App extends Component {
       .then(() => this.setState(newState))
   }
 
-  componentWillMount() {
-    this.usersRef = base.syncState('users', {
-      context: this,
-      state: 'users'
-    })
-  }
-
   componentDidMount() {
     let newState = {}
 
     getAllUsers()
       .then(users => newState.users = users)
       .then(() => this.setState(newState))
-  }
-
-  componentWillUnmount() {
-    base.removeBinding(this.usersRef)
   }
 
   render() {
