@@ -3,8 +3,6 @@ import { Card, CardTitle, Collapse, Label, Button, ButtonGroup, FormGroup, Input
 
 import { FaEllipsisH } from 'react-icons/fa';
 
-
-
 export default class TaskCard extends Component {
 
   state = {

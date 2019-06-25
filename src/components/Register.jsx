@@ -7,6 +7,8 @@ import { goToAnchor } from 'react-scrollable-anchor'
 import { Container, Form, FormGroup, Label, Input, Jumbotron, Button, FormFeedback, Toast, ToastHeader, ToastBody } from 'reactstrap'
 import ScrollableAnchor from 'react-scrollable-anchor'
 
+import MountainLogo from './green-mountains.png'
+
 export default class Register extends Component {
 
   state = {
@@ -72,12 +74,12 @@ export default class Register extends Component {
   }
 
   render() {
-
+    const colorFlip = !this.state.disableSubmit ? "#488C66" : "#C27D78"
     return (
 
       <Jumbotron className="mx-auto" style={{ backgroundColor: "white" }} fluid>
         <Container fluid>
-          <h3 className="display-4 text-right" style={{ color: "#488C66" }}>Resolute.</h3>
+          <h3 className="display-4 text-right" style={{ color: "#488C66" }}><img src={MountainLogo} alt="green logo" style={{ height: "3rem", width: "auto", display: "inline-block", paddingBottom: ".5rem" }} />Resolute.</h3>
           <p className="lead text-right">Let's get registered and get to work</p>
           <Form className="border rounded border-faded p-2 mx-auto clear-fix">
             <FormGroup>
@@ -133,7 +135,7 @@ export default class Register extends Component {
             </FormGroup>
 
             <Button
-              style={{ backgroundColor: "#488C66", borderColor: "#488C66" }}
+              style={{ backgroundColor: `${colorFlip}`, borderColor: `${colorFlip}` }}
               onClick={() => this.submit()}
               disabled={this.state.disableSubmit}
             >Register</Button>
