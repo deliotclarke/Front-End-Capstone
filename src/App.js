@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
-import { getUserFromLocalStorage } from './auth/userManager'
+import { getUserFromLocalStorage, getAllUsers } from './auth/userManager'
 import { patchUserPomo } from './auth/userManager'
+import { base } from './index'
 
 import './App.css'
 
@@ -12,7 +13,8 @@ import NavBar from './components/NavBar'
 
 class App extends Component {
   state = {
-    user: getUserFromLocalStorage()
+    user: getUserFromLocalStorage(),
+    users: []
   }
 
   logout = () => {
@@ -38,6 +40,25 @@ class App extends Component {
     let currentUser = { ...this.state.user }
     currentUser.pomoCounter = newCount
     this.setState({ user: currentUser })
+  }
+
+  componentWillMount() {
+    this.usersRef = base.syncState('users', {
+      context: this,
+      state: 'users'
+    })
+  }
+
+  componentDidMount() {
+    const newState = {}
+
+    getAllUsers()
+      .then(tasks => newState.tasks = tasks)
+      .then(() => this.setState(newState))
+  }
+
+  componentWillUnmount() {
+    base.removeBinding(this.usersRef)
   }
 
   render() {

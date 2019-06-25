@@ -11,6 +11,7 @@ import DefaultImage from './big-green.png'
 
 export default class UserProfile extends Component {
 
+  //reference to storage bucket on firebase
   storageRef = firebase.storage().ref('profiles');
 
   state = {

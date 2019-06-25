@@ -67,6 +67,16 @@
       "pomoCounter": 0,
       "permaPomoCounter": 0,
       "id": "cOkaiUlNUSVS12on47ajladf4Jg1"
+    },
+    {
+      "name": "Firebase Man",
+      "username": "firebaseman0",
+      "email": "fire@email.com",
+      "password": "",
+      "userImage": "https://firebasestorage.googleapis.com/v0/b/fecapstone-eliot.appspot.com/o/profiles%2Fprofile-photo-1561482886965?alt=media&token=ce786cc4-13ed-425c-979f-3f9071077d8a",
+      "pomoCounter": 0,
+      "permaPomoCounter": 0,
+      "id": "a1m4d7HlQogW00MzXHG5Pm079y83"
     }
   ],
   "tasks": [
@@ -245,6 +255,28 @@
       "selected": false,
       "completed": false,
       "id": 21
+    },
+    {
+      "userId": "9v5xQ2XvRzNT3ESuq96DmDai1os2",
+      "title": "firebase test add",
+      "notes": "this is a test add to see if firebase is synced through rebase",
+      "timestamp": 1561479840784,
+      "category": "todo",
+      "showOnTimer": false,
+      "selected": false,
+      "completed": false,
+      "id": 22
+    },
+    {
+      "userId": "9v5xQ2XvRzNT3ESuq96DmDai1os2",
+      "title": "one more firebase test",
+      "notes": "you know",
+      "timestamp": 1561480148387,
+      "category": "todo",
+      "showOnTimer": false,
+      "selected": false,
+      "completed": false,
+      "id": 23
     }
   ]
 }

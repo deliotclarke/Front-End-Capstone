@@ -1,11 +1,17 @@
 import * as firebase from 'firebase/app'
 import 'firebase/auth'
+import 'firebase/database'
 
 
 const url = 'http://localhost:8088/users'
 
 export const getUser = (userId) => {
   return fetch(`${url}/${userId}`)
+    .then(res => res.json())
+}
+
+export const getAllUsers = () => {
+  return fetch(`${url}/`)
     .then(res => res.json())
 }
 

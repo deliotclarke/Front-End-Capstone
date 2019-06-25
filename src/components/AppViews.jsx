@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Route, withRouter } from 'react-router-dom'
+import { base } from '../index'
 
 import TaskManager from '../modules/TaskManager'
 import TaskAdd from './Tasks/TaskAddButton'
@@ -73,12 +74,23 @@ class AppViews extends Component {
     // .then(() => this.props.history.push(`/tasks/${task.category}`))
   }
 
+  componentWillMount() {
+    this.tasksRef = base.syncState('tasks', {
+      context: this,
+      state: 'tasks'
+    })
+  }
+
   componentDidMount() {
     const newState = {}
 
     TaskManager.getAll()
       .then(tasks => newState.tasks = tasks)
       .then(() => this.setState(newState))
+  }
+
+  componentWillUnmount() {
+    base.removeBinding(this.tasksRef)
   }
 
   render() {
