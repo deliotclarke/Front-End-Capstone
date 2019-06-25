@@ -1,14 +1,27 @@
-const url = "http://localhost:8088/tasks"
+const url = "https://fecapstone-eliot.firebaseio.com/tasks"
 
 export default {
   getOneTask(taskId) {
-    return fetch(`${url}/${taskId}`).then(res => res.json())
+    return fetch(`${url}/${taskId}.json`).then(res => res.json())
   },
   getAll() {
-    return fetch(`${url}?_sort=id&_order=desc`).then(res => res.json())
+    return fetch(`${url}.json`)
+      .then(res => res.json())
+      .then(firebaseObj => {
+        if (firebaseObj) {
+          let actualData = Object.keys(firebaseObj).map(id => {
+            firebaseObj[id].id = id
+            return firebaseObj
+          })
+          return actualData
+        } else {
+          let tasks = []
+          return tasks
+        }
+      })
   },
   addTask(taskObj) {
-    return fetch(`${url}`, {
+    return fetch(`${url}.json`, {
       method: "POST",
       headers: {
         "content-type": "application/json"
@@ -17,7 +30,7 @@ export default {
     }).then(res => res.json())
   },
   patchTask(editedTask, taskId) {
-    return fetch(`${url}/${taskId}`, {
+    return fetch(`${url}/${taskId}.json`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json"
@@ -26,7 +39,7 @@ export default {
     }).then(res => res.json())
   },
   deleteTask(taskId) {
-    return fetch(`${url}/${taskId}`, {
+    return fetch(`${url}/${taskId}.json`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json"

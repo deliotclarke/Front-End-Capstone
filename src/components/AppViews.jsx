@@ -85,7 +85,9 @@ class AppViews extends Component {
     const newState = {}
 
     TaskManager.getAll()
-      .then(tasks => newState.tasks = tasks)
+      .then(tasks => {
+      newState.tasks = tasks
+      })
       .then(() => this.setState(newState))
   }
 

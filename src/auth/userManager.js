@@ -1,17 +1,18 @@
 import * as firebase from 'firebase/app'
 import 'firebase/auth'
 import 'firebase/database'
+import { base } from '..';
 
 
-const url = 'http://localhost:8088/users'
+const url = 'https://fecapstone-eliot.firebaseio.com/users'
 
 export const getUser = (userId) => {
-  return fetch(`${url}/${userId}`)
+  return fetch(`${url}/${userId}.json`)
     .then(res => res.json())
 }
 
 export const getAllUsers = () => {
-  return fetch(`${url}/`)
+  return fetch(`${url}.json`)
     .then(res => res.json())
 }
 
@@ -24,7 +25,7 @@ export const savePhoto = (photoObj, userId) => {
 }
 
 export const patchUser = (userObj, userId) => {
-  return fetch(`${url}/${userId}`, {
+  return fetch(`${url}/${userId}.json`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json"
@@ -49,12 +50,8 @@ export const register = (user) => {
     .then(firebaseId => {
       user.id = firebaseId;
       user.password = '';
-      return saveUserToJson(user);
     })
-    .then(newUserFromJson => {
-      setUserInLocalStorage(newUserFromJson);
-      return newUserFromJson;
-    })
+    .then(() => saveUserToJson(user))
 }
 
 export const login = (email, password) => {
@@ -69,19 +66,14 @@ export const login = (email, password) => {
 }
 
 export const saveUserToJson = (user) => {
-  return fetch(`${url}`, {
-    method: 'POST',
-    headers: {
-      'Content-type': 'application/json'
-    },
-    body: JSON.stringify(user)
+  return base.post(`users/${user.id}`, {
+    data: user
   })
-    .then(res => res.json())
-    .then(newUser => {
-      setUserInLocalStorage(newUser)
+    .then(() => {
+      setUserInLocalStorage(user)
 
       //gives the user object back in order to set the user in local storage
-      return newUser;
+      return user;
     })
 }
 
