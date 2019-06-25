@@ -24,6 +24,8 @@ class App extends Component {
       pomoCounter: 0,
       permaPomoCounter: permaCount
     }, this.state.user.id)
+      .then(() => getAllUsers())
+      .then(users => this.setState({ users: users }))
       .then(() => {
         localStorage.removeItem('user');
         this.setState({ user: "" })
@@ -31,15 +33,27 @@ class App extends Component {
   }
 
   refreshUserImage = (newUrl) => {
+
+    let newState = {}
+
     let currentUser = { ...this.state.user }
     currentUser.userImage = newUrl
-    this.setState({ user: currentUser })
+    newState.user = currentUser
+    getAllUsers()
+      .then(users => newState.users = users)
+      .then(() => this.setState(newState))
   }
 
   refreshUserPomo = (newCount) => {
+
+    let newState = {}
+
     let currentUser = { ...this.state.user }
     currentUser.pomoCounter = newCount
-    this.setState({ user: currentUser })
+    newState.user = currentUser
+    getAllUsers()
+      .then(users => newState.users = users)
+      .then(() => this.setState(newState))
   }
 
   componentWillMount() {
@@ -50,10 +64,10 @@ class App extends Component {
   }
 
   componentDidMount() {
-    const newState = {}
+    let newState = {}
 
     getAllUsers()
-      .then(tasks => newState.tasks = tasks)
+      .then(users => newState.users = users)
       .then(() => this.setState(newState))
   }
 
