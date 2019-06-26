@@ -8,8 +8,8 @@ import TimerTasks from './TimerTasks'
 
 export default class Timer extends Component {
   state = {
-    minutes: "00",
-    seconds: "03",
+    minutes: "25",
+    seconds: "00",
     counting: false,
     showShort: false,
     showLong: false
@@ -64,8 +64,8 @@ export default class Timer extends Component {
             })
 
           this.setState({
-            minutes: "00",
-            seconds: "03",
+            minutes: "25",
+            seconds: "00",
             counting: !this.state.counting,
           })
           clearInterval(interval)
@@ -98,8 +98,8 @@ export default class Timer extends Component {
 
         clearInterval(interval)
         this.setState({
-          minutes: "00",
-          seconds: "03"
+          minutes: "25",
+          seconds: "00"
         })
 
       }
@@ -119,7 +119,13 @@ export default class Timer extends Component {
         <Container style={{ textAlign: "center" }}>
           <h1 style={{ fontSize: "6rem" }}>[{this.state.minutes}:{this.state.seconds}]</h1>
           <h6>Pomo Counter: {this.props.user.pomoCounter}</h6>
-          <Button value="start" style={{ boxShadow: "none", backgroundColor: `${startResetColor}`, border: "none" }} onClick={() => this.handleStart()}>Start/Reset</Button>
+          <Button value="start" style={{
+            boxShadow: "none",
+            backgroundColor: `${startResetColor}`,
+            border: "none"
+          }}
+            onClick={() => this.handleStart()}
+          >Start/Reset</Button>
           <div>
             <Toast isOpen={this.state.showLong} style={{ marginTop: "1rem" }}>
               <ToastHeader toggle={this.toggleLong} icon={<Spinner size="sm" />}>Long Break!</ToastHeader>
