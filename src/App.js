@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
-import { getUserFromLocalStorage } from './auth/userManager'
+import { getUserFromLocalStorage, getAllUsers } from './auth/userManager'
 import { patchUserPomo } from './auth/userManager'
+import { base } from './index'
 
 import './App.css'
 
@@ -12,7 +13,8 @@ import NavBar from './components/NavBar'
 
 class App extends Component {
   state = {
-    user: getUserFromLocalStorage()
+    user: getUserFromLocalStorage(),
+    users: []
   }
 
   logout = () => {
@@ -22,22 +24,45 @@ class App extends Component {
       pomoCounter: 0,
       permaPomoCounter: permaCount
     }, this.state.user.id)
+      .then(() => getAllUsers())
+      .then(users => this.setState({ users: users }))
       .then(() => {
         localStorage.removeItem('user');
         this.setState({ user: "" })
+        debugger
       })
   }
 
   refreshUserImage = (newUrl) => {
+
+    let newState = {}
+
     let currentUser = { ...this.state.user }
     currentUser.userImage = newUrl
-    this.setState({ user: currentUser })
+    newState.user = currentUser
+    getAllUsers()
+      .then(users => newState.users = users)
+      .then(() => this.setState(newState))
   }
 
   refreshUserPomo = (newCount) => {
+
+    let newState = {}
+
     let currentUser = { ...this.state.user }
     currentUser.pomoCounter = newCount
-    this.setState({ user: currentUser })
+    newState.user = currentUser
+    getAllUsers()
+      .then(users => newState.users = users)
+      .then(() => this.setState(newState))
+  }
+
+  componentDidMount() {
+    let newState = {}
+
+    getAllUsers()
+      .then(users => newState.users = users)
+      .then(() => this.setState(newState))
   }
 
   render() {

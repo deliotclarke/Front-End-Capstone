@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Route, withRouter } from 'react-router-dom'
+import { base } from '../index'
 
 import TaskManager from '../modules/TaskManager'
 import TaskAdd from './Tasks/TaskAddButton'

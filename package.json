@@ -5,7 +5,8 @@
   "dependencies": {
     "antd": "^3.19.2",
     "bootstrap": "^4.3.1",
-    "firebase": "^6.1.1",
+    "firebase": "^6.2.3",
+    "re-base": "^4.0.0",
     "react": "^16.8.6",
     "react-bootstrap-sweetalert": "^4.4.1",
     "react-dom": "^16.8.6",
