@@ -29,7 +29,6 @@ class App extends Component {
       .then(() => {
         localStorage.removeItem('user');
         this.setState({ user: "" })
-        debugger
       })
   }
 

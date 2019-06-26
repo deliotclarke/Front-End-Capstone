@@ -58,6 +58,8 @@ export default class Register extends Component {
     });
   }
 
+
+
   render() {
     const colorFlip = !this.state.disableSubmit ? "#488C66" : "#C27D78"
     return (
