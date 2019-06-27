@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
 import { getUserFromLocalStorage, getAllUsers } from './auth/userManager'
 import { patchUserPomo } from './auth/userManager'
-import { base } from './index'
 
 import './App.css'
 
