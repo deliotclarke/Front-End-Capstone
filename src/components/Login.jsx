@@ -129,7 +129,7 @@ export default class Register extends Component {
               disabled={this.state.disableSubmit}
             >Login</Button>
             <Button
-              style={{ display: "inline-block", float: "right" }}
+              style={{ display: "none", float: "right" }}
               onClick={() => this.handleGithub()}
             >Sign in with Github <FaGithub /></Button>
           </Form>
