@@ -49,7 +49,6 @@ export const savePhoto = (photoObj, userId) => {
 
 
 export const patchUser = (userObj, userId) => {
-  debugger
   return base.update(`users/${userId}`, {
     data: userObj
   })
@@ -103,7 +102,6 @@ export const getUserFromLocalStorage = () => {
 
   if (!user || user === "undefined") return null;
 
-  debugger
   return JSON.parse(user)
 }
 
