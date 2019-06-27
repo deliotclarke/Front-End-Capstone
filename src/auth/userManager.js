@@ -6,7 +6,7 @@ import { base } from '..';
 
 const url = 'https://fecapstone-eliot.firebaseio.com/users'
 
-export const provider = new firebase.auth.GithubAuthProvider();
+const provider = new firebase.auth.GithubAuthProvider();
 
 export const getUser = (userId) => {
   return fetch(`${url}/${userId}.json`)
@@ -108,6 +108,10 @@ export const loginWithGithub = () => {
     // The signed-in user info.
     var user = result.user;
     // ...
+
+
+
+    console.log("token: ", token, "user: ", user)
   }).catch(function (error) {
     // Handle Errors here.
     var errorCode = error.code;

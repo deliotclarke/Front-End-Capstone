@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import { login } from '../auth/userManager'
+import { login, loginWithGithub } from '../auth/userManager'
 import { errorDict } from '../auth/userManager'
 
 import { Container, Form, FormGroup, Label, Input, Jumbotron, Button, FormFeedback, Toast, ToastHeader, ToastBody } from 'reactstrap'
 
+import { FaGithub } from 'react-icons/fa';
 import MountainLogo from './green-mountains.png'
 
 export default class Register extends Component {
@@ -42,6 +43,11 @@ export default class Register extends Component {
       this.setState({ disableSubmit: true })
     }
     this.setState({ validate })
+  }
+
+  handleGithub = () => {
+    loginWithGithub()
+      .then()
   }
 
   handleError = (errorString) => {
@@ -105,6 +111,10 @@ export default class Register extends Component {
               onClick={() => this.submit()}
               disabled={this.state.disableSubmit}
             >Login</Button>
+            <Button
+              style={{ display: "inline-block", float: "right" }}
+              onClick={() => this.handleGithub()}
+            >Sign in with Github <FaGithub /></Button>
           </Form>
           <p className="lead text-right mt-1">Not a user?
             <Link to="/register"> Register here</Link>
