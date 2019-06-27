@@ -18,6 +18,26 @@ export const getAllUsers = () => {
     .then(res => res.json())
 }
 
+export const checkExistingUsers = (newUser) => {
+  getAllUsers()
+    .then(objectOfUsers => {
+      if (objectOfUsers !== null) {
+        const userArray = Object.keys(objectOfUsers).map(keys => {
+          let newObj = { ...objectOfUsers[keys] }
+          return newObj
+        })
+
+        let isCurrentUser = false;
+        isCurrentUser = userArray.filter(user => {
+          if (user.id === newUser.uid) {
+            return true
+          }
+          return isCurrentUser
+        })
+      }
+    })
+}
+
 export const savePhoto = (photoObj, userId) => {
   return patchUser(photoObj, userId)
     .then(currentUser => {
@@ -102,26 +122,33 @@ export const loginWithFirebase = (email, password) => {
 }
 
 export const loginWithGithub = () => {
-  firebase.auth().signInWithPopup(provider).then(function (result) {
-    // This gives you a GitHub Access Token. You can use it to access the GitHub API.
-    var token = result.credential.accessToken;
-    // The signed-in user info.
-    var user = result.user;
-    // ...
+  return firebase.auth().signInWithPopup(provider)
+    .then(function (result) {
+      // This gives you a GitHub Access Token. You can use it to access the GitHub API.
+      const token = result.credential.accessToken;
+      // The signed-in user info.
+      const user = result.user;
+      // ...
 
+      console.log("token: ", token, "user: ", user)
 
-
-    console.log("token: ", token, "user: ", user)
-  }).catch(function (error) {
-    // Handle Errors here.
-    var errorCode = error.code;
-    var errorMessage = error.message;
-    // The email of the user's account used.
-    var email = error.email;
-    // The firebase.auth.AuthCredential type that was used.
-    var credential = error.credential;
-    // ...
-  });
+      if (checkExistingUsers(user)) {
+        setUserInLocalStorage(user)
+        return user
+      } else {
+        let userToSave = {
+          name: user.displayName,
+          username: '',
+          email: user.email,
+          password: '',
+          userImage: '',
+          pomoCounter: 0,
+          permaPomoCounter: 0,
+        }
+        userToSave.id = user.uid
+        return saveUserToJson(userToSave)
+      }
+    })
 }
 
 const setUserInLocalStorage = (user) => {
