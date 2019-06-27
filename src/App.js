@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
-import { getUserFromLocalStorage, getAllUsers } from './auth/userManager'
+import { getUserFromLocalStorage, setUserInLocalStorage } from './auth/userManager'
 import { patchUserPomo } from './auth/userManager'
 
 import './App.css'
@@ -12,8 +12,7 @@ import NavBar from './components/NavBar'
 
 class App extends Component {
   state = {
-    user: getUserFromLocalStorage(),
-    users: []
+    user: getUserFromLocalStorage()
   }
 
   logout = () => {
@@ -23,11 +22,13 @@ class App extends Component {
       pomoCounter: 0,
       permaPomoCounter: permaCount
     }, this.state.user.id)
-      .then(() => getAllUsers())
-      .then(users => this.setState({ users: users }))
+      .then((user) => {
+        setUserInLocalStorage(user)
+        this.setState({ user: getUserFromLocalStorage() })
+      })
       .then(() => {
         localStorage.removeItem('user');
-        this.setState({ user: "" })
+        this.setState({ user: null })
       })
   }
 
@@ -38,29 +39,22 @@ class App extends Component {
     let currentUser = { ...this.state.user }
     currentUser.userImage = newUrl
     newState.user = currentUser
-    getAllUsers()
-      .then(users => newState.users = users)
-      .then(() => this.setState(newState))
+    setUserInLocalStorage(currentUser)
+    this.setState({ user: getUserFromLocalStorage() })
+    // getUser()
+    //   .then(users => newState.users = users)
+    //   .then(() => this.setState(newState))
   }
 
   refreshUserPomo = (newCount) => {
 
     let newState = {}
-
+    debugger
     let currentUser = { ...this.state.user }
     currentUser.pomoCounter = newCount
     newState.user = currentUser
-    getAllUsers()
-      .then(users => newState.users = users)
-      .then(() => this.setState(newState))
-  }
-
-  componentDidMount() {
-    let newState = {}
-
-    getAllUsers()
-      .then(users => newState.users = users)
-      .then(() => this.setState(newState))
+    setUserInLocalStorage(currentUser)
+    this.setState({ user: getUserFromLocalStorage() })
   }
 
   render() {

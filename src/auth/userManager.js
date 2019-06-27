@@ -26,7 +26,6 @@ export const checkExistingUsers = (newUser) => {
           let newObj = { ...objectOfUsers[keys] }
           return newObj
         })
-
         let isCurrentUser = false;
         isCurrentUser = userArray.filter(user => {
           if (user.id === newUser.uid) {
@@ -34,6 +33,8 @@ export const checkExistingUsers = (newUser) => {
           }
           return isCurrentUser
         })
+      } else {
+        return false
       }
     })
 }
@@ -46,14 +47,12 @@ export const savePhoto = (photoObj, userId) => {
     })
 }
 
+
 export const patchUser = (userObj, userId) => {
-  return fetch(`${url}/${userId}.json`, {
-    method: "PATCH",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify(userObj)
-  }).then(res => res.json())
+  debugger
+  return base.update(`users/${userId}`, {
+    data: userObj
+  })
 }
 
 export const patchUserPomo = (userObj, userId) => {
@@ -102,8 +101,9 @@ export const saveUserToJson = (user) => {
 export const getUserFromLocalStorage = () => {
   const user = localStorage.getItem('user');
 
-  if (!user) return null;
+  if (!user || user === "undefined") return null;
 
+  debugger
   return JSON.parse(user)
 }
 
@@ -151,7 +151,7 @@ export const loginWithGithub = () => {
     })
 }
 
-const setUserInLocalStorage = (user) => {
+export const setUserInLocalStorage = (user) => {
   localStorage.setItem('user', JSON.stringify(user));
 }
 

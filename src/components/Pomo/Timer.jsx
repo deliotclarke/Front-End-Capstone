@@ -9,8 +9,8 @@ import TimerTasks from './TimerTasks'
 export default class Timer extends Component {
 
   state = {
-    minutes: "25",
-    seconds: "00",
+    minutes: "00",
+    seconds: "03",
     counting: false,
     showShort: false,
     showLong: false
@@ -65,8 +65,8 @@ export default class Timer extends Component {
             })
 
           this.setState({
-            minutes: "25",
-            seconds: "00",
+            minutes: "00",
+            seconds: "03",
             counting: !this.state.counting,
           })
 
@@ -102,8 +102,8 @@ export default class Timer extends Component {
 
         clearInterval(interval)
         this.setState({
-          minutes: "25",
-          seconds: "00"
+          minutes: "00",
+          seconds: "03"
         })
 
       }
