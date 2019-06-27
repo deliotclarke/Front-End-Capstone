@@ -49,7 +49,7 @@ class App extends Component {
   refreshUserPomo = (newCount) => {
 
     let newState = {}
-    debugger
+
     let currentUser = { ...this.state.user }
     currentUser.pomoCounter = newCount
     newState.user = currentUser
