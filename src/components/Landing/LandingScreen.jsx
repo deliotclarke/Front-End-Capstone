@@ -7,11 +7,13 @@ import { FaPlusSquare, FaTimes, FaEllipsisH } from 'react-icons/fa';
 export default class LandingScreen extends Component {
 
   render() {
+
+    let welcomeMessage = !this.props.user.username ? "Welcome!" : `Welcome ${this.props.user.username}!`
     return (
       <>
         <div className="main-body">
           <Container>
-            <h2 style={{ textAlign: "center", paddingTop: "1rem", color: "#89AB92", borderBottom: "1px solid #89AB92" }}>Welcome, {this.props.user.username}!</h2>
+            <h2 style={{ textAlign: "center", paddingTop: "1rem", color: "#89AB92", borderBottom: "1px solid #89AB92" }}>{`${welcomeMessage}`}</h2>
             <br />
             <div>
               <p className="lead">This is <span style={{ color: "#3F7255", fontWeight: "700" }}>Resolute.</span> <br /><br />We're here to help you <br /><strong>get organized</strong>, <strong>get to work</strong> and <br /><strong>reach your goals</strong>.<br /><br />We utilize a mini <span style={{ color: "#3F7255", fontWeight: "600" }}>Kanban Board</span> and the <span style={{ fontWeight: "600", color: "#BF4D43" }}>Pomodoro Technique</span> to help you get on track and stay there.<br /><br />If this is your first introduction to the <span style={{ fontWeight: "600", color: "#BF4D43" }}>Pomodoro Technique</span> or your first time here, click the button below to see suggestion for utilizing our app.</p>

@@ -6,6 +6,8 @@ import { base } from '..';
 
 const url = 'https://fecapstone-eliot.firebaseio.com/users'
 
+const provider = new firebase.auth.GithubAuthProvider();
+
 export const getUser = (userId) => {
   return fetch(`${url}/${userId}.json`)
     .then(res => res.json())
@@ -16,6 +18,27 @@ export const getAllUsers = () => {
     .then(res => res.json())
 }
 
+export const checkExistingUsers = (newUser) => {
+  getAllUsers()
+    .then(objectOfUsers => {
+      if (objectOfUsers !== null) {
+        const userArray = Object.keys(objectOfUsers).map(keys => {
+          let newObj = { ...objectOfUsers[keys] }
+          return newObj
+        })
+        let isCurrentUser = false;
+        isCurrentUser = userArray.filter(user => {
+          if (user.id === newUser.uid) {
+            return true
+          }
+          return isCurrentUser
+        })
+      } else {
+        return false
+      }
+    })
+}
+
 export const savePhoto = (photoObj, userId) => {
   return patchUser(photoObj, userId)
     .then(currentUser => {
@@ -24,14 +47,12 @@ export const savePhoto = (photoObj, userId) => {
     })
 }
 
+
 export const patchUser = (userObj, userId) => {
-  return fetch(`${url}/${userId}.json`, {
-    method: "PATCH",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify(userObj)
-  }).then(res => res.json())
+  debugger
+  return base.update(`users/${userId}`, {
+    data: userObj
+  })
 }
 
 export const patchUserPomo = (userObj, userId) => {
@@ -80,8 +101,9 @@ export const saveUserToJson = (user) => {
 export const getUserFromLocalStorage = () => {
   const user = localStorage.getItem('user');
 
-  if (!user) return null;
+  if (!user || user === "undefined") return null;
 
+  debugger
   return JSON.parse(user)
 }
 
@@ -99,7 +121,37 @@ export const loginWithFirebase = (email, password) => {
     })
 }
 
-const setUserInLocalStorage = (user) => {
+export const loginWithGithub = () => {
+  return firebase.auth().signInWithPopup(provider)
+    .then(function (result) {
+      // This gives you a GitHub Access Token. You can use it to access the GitHub API.
+      const token = result.credential.accessToken;
+      // The signed-in user info.
+      const user = result.user;
+      // ...
+
+      console.log("token: ", token, "user: ", user)
+
+      if (checkExistingUsers(user)) {
+        setUserInLocalStorage(user)
+        return user
+      } else {
+        let userToSave = {
+          name: user.displayName,
+          username: '',
+          email: user.email,
+          password: '',
+          userImage: '',
+          pomoCounter: 0,
+          permaPomoCounter: 0,
+        }
+        userToSave.id = user.uid
+        return saveUserToJson(userToSave)
+      }
+    })
+}
+
+export const setUserInLocalStorage = (user) => {
   localStorage.setItem('user', JSON.stringify(user));
 }
 

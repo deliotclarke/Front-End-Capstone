@@ -83,7 +83,8 @@ export default class UserProfile extends Component {
                   verticalAlign: "center",
                   height: "125px",
                   width: "125px",
-                  borderRadius: "50%"
+                  borderRadius: "50%",
+                  border: " 1px dashed #89AB92"
                 }} />
             </div>
             <div style={{ display: `${invisible}`, textAlign: "center" }}>

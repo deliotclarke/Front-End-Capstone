@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import { login } from '../auth/userManager'
+import { login, loginWithGithub } from '../auth/userManager'
 import { errorDict } from '../auth/userManager'
 
 import { Container, Form, FormGroup, Label, Input, Jumbotron, Button, FormFeedback, Toast, ToastHeader, ToastBody } from 'reactstrap'
 
+import { FaGithub } from 'react-icons/fa';
 import MountainLogo from './green-mountains.png'
 
 export default class Register extends Component {
@@ -44,6 +45,28 @@ export default class Register extends Component {
     this.setState({ validate })
   }
 
+  handleGithub = () => {
+    loginWithGithub()
+      .then(user => {
+        this.props.onLogin(user);
+        this.props.history.push('/');
+      })
+      .catch(function (error) {
+
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        // The email of the user's account used.
+        var email = error.email;
+        // The firebase.auth.AuthCredential type that was used.
+        var credential = error.credential;
+        // ...
+
+        console.log(error)
+      });
+
+  }
+
   handleError = (errorString) => {
     this.setState({
       errorMessage: errorString,
@@ -57,6 +80,8 @@ export default class Register extends Component {
       showError: !this.state.showError
     });
   }
+
+
 
   render() {
     const colorFlip = !this.state.disableSubmit ? "#488C66" : "#C27D78"
@@ -103,6 +128,10 @@ export default class Register extends Component {
               onClick={() => this.submit()}
               disabled={this.state.disableSubmit}
             >Login</Button>
+            <Button
+              style={{ display: "none", float: "right" }}
+              onClick={() => this.handleGithub()}
+            >Sign in with Github <FaGithub /></Button>
           </Form>
           <p className="lead text-right mt-1">Not a user?
             <Link to="/register"> Register here</Link>

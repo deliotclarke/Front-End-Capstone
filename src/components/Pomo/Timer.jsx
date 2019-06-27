@@ -7,9 +7,10 @@ import TimerTasks from './TimerTasks'
 
 
 export default class Timer extends Component {
+
   state = {
-    minutes: "25",
-    seconds: "00",
+    minutes: "00",
+    seconds: "03",
     counting: false,
     showShort: false,
     showLong: false
@@ -28,7 +29,6 @@ export default class Timer extends Component {
   }
 
   handleBreaks = (pomoCount) => {
-    console.log(pomoCount)
     if (pomoCount % 4 === 0) {
       this.toggleLong()
     } else {
@@ -51,6 +51,7 @@ export default class Timer extends Component {
         secondsLeft--;
 
         if (this.state.minutes === "00" && this.state.seconds === "00") {
+          const bing = new Audio(require("./sound_ex_machina_Action_Pop+Up.mp3"))
 
           let keepPomoCount = this.props.user.pomoCounter;
           keepPomoCount++;
@@ -64,12 +65,14 @@ export default class Timer extends Component {
             })
 
           this.setState({
-            minutes: "25",
-            seconds: "00",
+            minutes: "00",
+            seconds: "03",
             counting: !this.state.counting,
           })
-          clearInterval(interval)
-          this.handleBreaks(keepPomoCount)
+
+          clearInterval(interval);
+          bing.play();
+          this.handleBreaks(keepPomoCount);
 
         } else if (this.state.seconds === "00") {
           minutesLeft--;
@@ -83,6 +86,7 @@ export default class Timer extends Component {
               minutes: "0" + minutesLeft
             })
           }
+
         } else if (secondsLeft < 10) {
           this.setState({
             seconds: "0" + secondsLeft
@@ -98,8 +102,8 @@ export default class Timer extends Component {
 
         clearInterval(interval)
         this.setState({
-          minutes: "25",
-          seconds: "00"
+          minutes: "00",
+          seconds: "03"
         })
 
       }
@@ -114,6 +118,7 @@ export default class Timer extends Component {
       return task.category === "inprogress"
     })
     const startResetColor = !this.state.counting ? "#89AB92" : "#C27D78"
+
     return (
       <>
         <Container style={{ textAlign: "center" }}>
