@@ -26,7 +26,6 @@ class NavBar extends React.Component {
       <div>
         <Navbar color="faded" style={{ backgroundColor: "#488C66", fontFamily: 'Roboto' }} light>
           <NavbarToggler onClick={this.toggleNavbar} className="mr-2" style={{ outline: "none" }} />
-          <img src={MountainLogo} alt="Mountain Logo" style={{ height: "3.3rem", width: "auto", margin: "auto 0", marginLeft: "1rem" }} />
           <NavbarBrand href="/" style={{ color: '#F7F6F6', marginRight: "0" }}>Resolute.</NavbarBrand>
           <Collapse isOpen={!this.state.collapsed} navbar>
             <Nav navbar>
