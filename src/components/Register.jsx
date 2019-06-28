@@ -32,7 +32,6 @@ export default class Register extends Component {
   submit = () => {
     register(this.state.user)
       .then(newUser => {
-        debugger
         this.props.onRegister(newUser);
         this.props.history.push('/');
       })

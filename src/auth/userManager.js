@@ -49,6 +49,10 @@ export const savePhoto = (photoObj, userId) => {
 
 
 export const patchUser = (userObj, userId) => {
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
   return base.update(`users/${userId}`, {
     data: userObj
   })
