@@ -4,7 +4,7 @@ import 'firebase/storage';
 import { savePhoto } from '../../auth/userManager'
 
 import { Jumbotron, Container, Input, Button, FormGroup, FormText } from 'reactstrap';
-import { FaPortrait, FaTimesCircle, FaPlusCircle } from 'react-icons/fa';
+import { FaTimesCircle, FaPlusCircle } from 'react-icons/fa';
 
 import DefaultImage from './big-green.png'
 
@@ -84,7 +84,7 @@ export default class UserProfile extends Component {
                   height: "125px",
                   width: "125px",
                   borderRadius: "50%",
-                  border: " 1px dashed #89AB92"
+                  backgroundColor: "#f7f7f7"
                 }} />
             </div>
             <div style={{ display: `${invisible}`, textAlign: "center" }}>

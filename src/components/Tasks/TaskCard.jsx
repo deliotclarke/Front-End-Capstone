@@ -88,13 +88,12 @@ export default class TaskCard extends Component {
 
       //dynamic button factory makes buttons based on where the task is currently placed
       return (
-        <>
-          <Button
-            key={`${buttonValue}_Button_${this.props.task.id}`}
-            size="sm"
-            value={buttonValue}
-            onClick={() => this.handlePatch(buttonValue, this.props.task)}>{buttonLabel}</Button>
-        </>
+        <Button
+          key={`${buttonValue}_Button_${this.props.task.id}`}
+          size="sm"
+          value={buttonValue}
+          onClick={() => this.handlePatch(buttonValue, this.props.task)}>{buttonLabel}</Button>
+
       )
     })
     return myButtons
