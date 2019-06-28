@@ -21,11 +21,21 @@ class AppViews extends Component {
   }
 
   handleAddConfirm = () => {
-    this.setState({ confirmTaskAdd: !this.state.confirmTaskAdd })
+    this.setState({ confirmTaskAdd: !this.state.confirmTaskAdd },
+      () => {
+        window.setTimeout(() => {
+          this.setState({ confirmTaskAdd: !this.state.confirmTaskAdd })
+        }, 2000)
+      })
   }
 
   handleDeleteConfirm = () => {
-    this.setState({ confirmTaskDelete: !this.state.confirmTaskDelete })
+    this.setState({ confirmTaskDelete: !this.state.confirmTaskDelete },
+      () => {
+        window.setTimeout(() => {
+          this.setState({ confirmTaskDelete: !this.state.confirmTaskDelete })
+        }, 2000)
+      })
   }
 
   addTask = (taskObj) => {
