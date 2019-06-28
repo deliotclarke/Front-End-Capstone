@@ -19,23 +19,45 @@ export const getAllUsers = () => {
 }
 
 export const checkExistingUsers = (newUser) => {
-  getAllUsers()
+  return getAllUsers()
     .then(objectOfUsers => {
+      let userObjArray = []
       if (objectOfUsers !== null) {
         const userArray = Object.keys(objectOfUsers).map(keys => {
           let newObj = { ...objectOfUsers[keys] }
           return newObj
         })
-        let isCurrentUser = false;
-        isCurrentUser = userArray.filter(user => {
+        userObjArray = userArray.filter(user => {
           if (user.id === newUser.uid) {
             return true
+          } else {
+            return false
           }
-          return isCurrentUser
         })
-      } else {
-        return false
+        if (!!userObjArray[0]) {
+
+          setUserInLocalStorage(userObjArray[0])
+
+          return userObjArray[0]
+        } else {
+
+          let userToSave = {
+            name: newUser.displayName,
+            username: newUser.displayName,
+            email: newUser.email,
+            password: '',
+            userImage: '',
+            pomoCounter: 0,
+            permaPomoCounter: 0,
+          }
+
+          userToSave.id = newUser.uid
+
+          saveUserToJson(userToSave)
+          return userToSave
+        }
       }
+      return userObjArray[0]
     })
 }
 
@@ -132,22 +154,7 @@ export const loginWithGithub = () => {
 
       console.log("token: ", token, "user: ", user)
 
-      if (checkExistingUsers(user)) {
-        setUserInLocalStorage(user)
-        return user
-      } else {
-        let userToSave = {
-          name: user.displayName,
-          username: '',
-          email: user.email,
-          password: '',
-          userImage: '',
-          pomoCounter: 0,
-          permaPomoCounter: 0,
-        }
-        userToSave.id = user.uid
-        return saveUserToJson(userToSave)
-      }
+      return checkExistingUsers(user)
     })
 }
 

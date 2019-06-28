@@ -11,6 +11,7 @@ import AppViews from './components/AppViews'
 import NavBar from './components/NavBar'
 
 class App extends Component {
+
   state = {
     user: getUserFromLocalStorage()
   }
