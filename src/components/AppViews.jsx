@@ -15,9 +15,18 @@ class AppViews extends Component {
 
   state = {
     tasks: [],
+    confirmTaskAdd: false,
+    confirmTaskDelete: false,
     user: this.props.user
   }
 
+  handleAddConfirm = () => {
+    this.setState({ confirmTaskAdd: !this.state.confirmTaskAdd })
+  }
+
+  handleDeleteConfirm = () => {
+    this.setState({ confirmTaskDelete: !this.state.confirmTaskDelete })
+  }
 
   addTask = (taskObj) => {
     let goto = taskObj.category
@@ -26,7 +35,10 @@ class AppViews extends Component {
       .then(tasks => {
         this.setState({ tasks: tasks })
       })
-      .then(() => this.props.history.push(`/tasks/${goto}`))
+      .then(() => {
+        this.props.history.push(`/tasks/${goto}`)
+        this.handleAddConfirm()
+      })
   }
 
   //handles batched deletion of selected tasks
@@ -40,7 +52,10 @@ class AppViews extends Component {
           .then(tasks => {
             this.setState({ tasks: tasks })
           })
-          .then(() => this.props.history.push('/tasks/todo'))
+          .then(() => {
+            this.props.history.push('/tasks/todo')
+            this.handleDeleteConfirm()
+          })
       })
   }
 
@@ -96,7 +111,7 @@ class AppViews extends Component {
           return (
             <>
               <TaskAdd {...props} user={this.props.user} addTask={this.addTask} handleDelete={this.handleDelete} tasks={currentUserTasks} />
-              <TaskViews {...props} user={this.props.user} tasks={currentUserTasks} patchCategory={this.patchCategory} editPatch={this.editPatch} patchTask={this.patchTask} />
+              <TaskViews {...props} user={this.props.user} tasks={currentUserTasks} handleAddConfirm={this.handleAddConfirm} handleDeleteConfirm={this.handleDeleteConfirm} confirmTaskAdd={this.state.confirmTaskAdd} confirmTaskDelete={this.state.confirmTaskDelete} patchCategory={this.patchCategory} editPatch={this.editPatch} patchTask={this.patchTask} />
               <TaskNav />
             </>
           )

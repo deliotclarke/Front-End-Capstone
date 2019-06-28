@@ -99,8 +99,7 @@ class TaskAdd extends Component {
       }
 
       this.toggle();
-      this.props.addTask(newTask);
-      //may need a .then to reset the state of the form
+      this.props.addTask(newTask)
 
     }
   }
