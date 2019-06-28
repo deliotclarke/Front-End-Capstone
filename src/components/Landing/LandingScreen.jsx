@@ -8,7 +8,7 @@ export default class LandingScreen extends Component {
 
   render() {
 
-    let welcomeMessage = !this.props.user.username ? "Welcome!" : `Welcome ${this.props.user.username}!`
+    let welcomeMessage = !this.props.user.username ? "Hello!" : `Hello, ${this.props.user.username}!`
     return (
       <>
         <div className="main-body">
