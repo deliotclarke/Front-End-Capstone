@@ -48,6 +48,7 @@ export default class Register extends Component {
   handleGithub = () => {
     loginWithGithub()
       .then(user => {
+        debugger
         this.props.onLogin(user);
         this.props.history.push('/');
       })
@@ -80,8 +81,6 @@ export default class Register extends Component {
       showError: !this.state.showError
     });
   }
-
-
 
   render() {
     const colorFlip = !this.state.disableSubmit ? "#488C66" : "#C27D78"
@@ -129,7 +128,7 @@ export default class Register extends Component {
               disabled={this.state.disableSubmit}
             >Login</Button>
             <Button
-              style={{ display: "none", float: "right" }}
+              style={{ display: "inline-block", float: "right" }}
               onClick={() => this.handleGithub()}
             >Sign in with Github <FaGithub /></Button>
           </Form>
