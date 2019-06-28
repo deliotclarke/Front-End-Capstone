@@ -37,10 +37,10 @@ export const checkExistingUsers = (newUser) => {
         if (!!userObjArray[0]) {
 
           setUserInLocalStorage(userObjArray[0])
-          debugger
+
           return userObjArray[0]
         } else {
-          debugger
+
           let userToSave = {
             name: newUser.displayName,
             username: newUser.displayName,
@@ -50,6 +50,7 @@ export const checkExistingUsers = (newUser) => {
             pomoCounter: 0,
             permaPomoCounter: 0,
           }
+
           userToSave.id = newUser.uid
 
           saveUserToJson(userToSave)

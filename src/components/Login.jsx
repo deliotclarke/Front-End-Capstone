@@ -48,7 +48,7 @@ export default class Register extends Component {
   handleGithub = () => {
     loginWithGithub()
       .then(user => {
-        debugger
+
         this.props.onLogin(user);
         this.props.history.push('/');
       })
