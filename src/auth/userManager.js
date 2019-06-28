@@ -103,10 +103,6 @@ export const getUserFromLocalStorage = () => {
 
   if (!user || user === "undefined") return null;
 
-<<<<<<< HEAD
-=======
-
->>>>>>> master
   return JSON.parse(user)
 }
 
