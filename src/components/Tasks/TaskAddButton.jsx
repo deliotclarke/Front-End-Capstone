@@ -11,6 +11,9 @@ import {
   InputGroup,
   InputGroupAddon,
   InputGroupText,
+  Toast,
+  ToastHeader,
+  ToastBody
 } from 'reactstrap';
 
 import { FaPlusSquare, FaTimes } from 'react-icons/fa';
@@ -23,6 +26,7 @@ class TaskAdd extends Component {
     super(props);
     this.state = {
       modal: false,
+      showError: false,
       backdrop: true,
       visible: true,
       taskTitle: "",
@@ -71,11 +75,13 @@ class TaskAdd extends Component {
     this.setState(stateToChange)
   }
 
+  handleError = () => {
+    this.setState({ showError: !this.state.showError });
+  }
+
   createTaskObj() {
     if (this.state.taskTitle === "" || this.state.taskNotes === "" || this.state.taskCategory === "") {
-      return (
-        alert("please complete form!")
-      )
+      this.handleError();
     } else {
 
       let date = new Date();
@@ -139,6 +145,12 @@ class TaskAdd extends Component {
                   </InputGroupAddon>
                 </InputGroup>
               </Form>
+              <Toast isOpen={this.state.showError} style={{ marginTop: "1rem" }}>
+                <ToastHeader toggle={this.handleError} style={{ color: "#BF4D43" }} >Uh ohhhhhhh!</ToastHeader>
+                <ToastBody>
+                  You missed a spot!! Please complete the form and try again!
+                </ToastBody>
+              </Toast>
             </ModalBody>
             <ModalFooter>
               <Button style={{ backgroundColor: "#3F7255", border: "none", boxShadow: "none" }} size="sm" onClick={this.createTaskObj}>Add Task</Button>{' '}
