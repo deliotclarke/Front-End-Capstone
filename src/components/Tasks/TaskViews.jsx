@@ -19,7 +19,7 @@ export default class TaskViews extends Component {
           })
           return (
             <>
-              <TasksToDo {...this.props} {...props} tasks={toDoTasks} patchTask={this.props.patchTask} />
+              <TasksToDo {...this.props} {...props} tasks={toDoTasks} patchTask={this.props.patchTask} handleConfirm={this.props.handleConfirm} />
             </>
           )
         }} />
@@ -30,7 +30,7 @@ export default class TaskViews extends Component {
           })
           return (
             <>
-              <TasksInProgress {...this.props} {...props} tasks={inProgressTasks} patchTask={this.props.patchTask} />
+              <TasksInProgress {...this.props} {...props} tasks={inProgressTasks} patchTask={this.props.patchTask} handleConfirm={this.props.handleConfirm} />
             </>
           )
         }} />
@@ -41,7 +41,7 @@ export default class TaskViews extends Component {
           })
           return (
             <>
-              <TasksDone {...this.props} {...props} tasks={doneTasks} patchTask={this.props.patchTask} />
+              <TasksDone {...this.props} {...props} tasks={doneTasks} patchTask={this.props.patchTask} handleConfirm={this.props.handleConfirm} />
             </>
           )
         }} />
