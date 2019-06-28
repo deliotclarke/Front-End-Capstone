@@ -24,7 +24,7 @@ class AppViews extends Component {
     this.setState({ confirmTaskAdd: !this.state.confirmTaskAdd },
       () => {
         window.setTimeout(() => {
-          this.setState({ confirmTaskAdd: !this.state.confirmTaskAdd })
+          this.setState({ confirmTaskAdd: false })
         }, 2000)
       })
   }
@@ -33,7 +33,7 @@ class AppViews extends Component {
     this.setState({ confirmTaskDelete: !this.state.confirmTaskDelete },
       () => {
         window.setTimeout(() => {
-          this.setState({ confirmTaskDelete: !this.state.confirmTaskDelete })
+          this.setState({ confirmTaskDelete: false })
         }, 2000)
       })
   }
