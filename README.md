@@ -20,22 +20,22 @@
 5. JSON Server
 
 ### Features:
-User Authentication
-Pomodoro Timer
-Task List w/ Full CRUD
-User Profiles w/ Optional Image Upload
-Mobile First
+User Authentication<br>
+Pomodoro Timer<br>
+Task List w/ Full CRUD<br>
+User Profiles w/ Optional Image Upload<br>
+Mobile First<br>
 
 ### Stretch Goals:
-Github Sign-in
-Integration with Task List and Github Projects (Is it even possible? Who knows?)
-Tasks will appear with the timer so the user knows what they’re working on at the time
-Notes Area
-Inspiration Area (would include: dribbble API for random inspiration pictures and a theme assistant)
-Browser version
-Encouraging quotes on screen load
-A place for the user to see completed tasks
-Deployment through Firebase
+Github Sign-in<br>
+Integration with Task List and Github Projects (Is it even possible? Who knows?)<br>
+Tasks will appear with the timer so the user knows what they’re working on at the time<br>
+Notes Area<br>
+Inspiration Area (would include: dribbble API for random inspiration pictures and a theme assistant)<br>
+Browser version<br>
+Encouraging quotes on screen load<br>
+A place for the user to see completed tasks<br>
+Deployment through Firebase<br>
 ***
 # How to Use Resolute
 
