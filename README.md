@@ -57,4 +57,5 @@ Deployment through Firebase<br>
 - If you decide you'd like to remove a task entirely, just click the title of as many as you'd like to delete and press the red X button. Any task that has turned red and striked out will be removed permanently, so feel free to track finished tasks by leaving them on your Done board.
 ###### Note from the developer: If you plan to pull this repo down to use on your local machine keep in mind that Resolute is a mobile-only application. For continuity, it's suggested that you use VSCode and Google Chrome with the DevTools open in mobile view. It is also suggested to use the deployed version in the same way or on a mobile-device.
 
-### Resolute was deployed through firebase, to use simply [click here](https://fecapstone-eliot.firebaseapp.com/ "Resolute")
+### Resolute was deployed through firebase, to use simply [click here](https://fecapstone-eliot.firebaseapp.com/ "Resolute").
+### Or if you'd rather, watch a short clip of the app in action on [Vimeo](https://vimeo.com/345330109 "Resolute in action").
