@@ -36,7 +36,7 @@ Browser version<br>
 Encouraging quotes on screen load<br>
 A place for the user to see completed tasks<br>
 Deployment through Firebase<br>
-***
+<br>
 # How to Use Resolute
 
 #####  First, the Pomodoro Technique, this technique is used by many to encourage consistent workflow. Here's one approach:
