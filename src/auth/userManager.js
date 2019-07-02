@@ -46,7 +46,7 @@ export const checkExistingUsers = (newUser) => {
             username: newUser.displayName,
             email: newUser.email,
             password: '',
-            userImage: '',
+            userImage: newUser.photoURL,
             pomoCounter: 0,
             permaPomoCounter: 0,
           }
@@ -124,7 +124,6 @@ export const getUserFromLocalStorage = () => {
   const user = localStorage.getItem('user');
 
   if (!user || user === "undefined") return null;
-
 
   return JSON.parse(user)
 }
