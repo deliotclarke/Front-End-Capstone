@@ -46,7 +46,7 @@ export const checkExistingUsers = (newUser) => {
             username: newUser.displayName,
             email: newUser.email,
             password: '',
-            userImage: '',
+            userImage: newUser.photoURL,
             pomoCounter: 0,
             permaPomoCounter: 0,
           }
