@@ -71,7 +71,6 @@ export const savePhoto = (photoObj, userId) => {
 
 
 export const patchUser = (userObj, userId) => {
-
   return base.update(`users/${userId}`, {
     data: userObj
   })
