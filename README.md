@@ -1,6 +1,6 @@
 # Resolute
 
-### Your app on track
+![Resolute Presentation Slide](resolute.png)
 
 ***
 ##### The Resolute app is a solution to task management for anyone planning a solo project or for those who just want to better organize their time. A place to come when working to add/edit/remove tasks, encourage workflow, and keep track of completed tasks. 
