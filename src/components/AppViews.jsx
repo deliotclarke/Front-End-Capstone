@@ -69,33 +69,12 @@ class AppViews extends Component {
       })
   }
 
-  patchCategory = (taskObj, taskId) => {
-    let goto = taskObj.category
-    TaskManager.patchTask(taskObj, taskId)
-      .then(() => TaskManager.getAll())
-      .then(tasks => {
-        this.setState({ tasks: tasks })
-      })
-      .then(() => this.props.history.push(`/tasks/${goto}`))
-  }
-
-  editPatch = (taskObj, taskId) => {
-    let goto = taskObj.category
-    TaskManager.patchTask(taskObj, taskId)
-      .then(() => TaskManager.getAll())
-      .then(tasks => {
-        this.setState({ tasks: tasks })
-      })
-      .then(() => this.props.history.push(`/tasks/${goto}`))
-  }
-
   patchTask = (task, taskId) => {
-    TaskManager.patchTask(task, taskId)
+    return TaskManager.patchTask(task, taskId)
       .then(() => TaskManager.getAll())
       .then(tasks => {
         this.setState({ tasks: tasks })
       })
-    // .then(() => this.props.history.push(`/tasks/${task.category}`))
   }
 
   componentDidMount() {
@@ -121,7 +100,7 @@ class AppViews extends Component {
           return (
             <>
               <TaskAdd {...props} user={this.props.user} addTask={this.addTask} handleDelete={this.handleDelete} tasks={currentUserTasks} />
-              <TaskViews {...props} user={this.props.user} tasks={currentUserTasks} handleAddConfirm={this.handleAddConfirm} handleDeleteConfirm={this.handleDeleteConfirm} confirmTaskAdd={this.state.confirmTaskAdd} confirmTaskDelete={this.state.confirmTaskDelete} patchCategory={this.patchCategory} editPatch={this.editPatch} patchTask={this.patchTask} />
+              <TaskViews {...props} user={this.props.user} tasks={currentUserTasks} handleAddConfirm={this.handleAddConfirm} handleDeleteConfirm={this.handleDeleteConfirm} confirmTaskAdd={this.state.confirmTaskAdd} confirmTaskDelete={this.state.confirmTaskDelete} patchTask={this.patchTask} />
               <TaskNav />
             </>
           )

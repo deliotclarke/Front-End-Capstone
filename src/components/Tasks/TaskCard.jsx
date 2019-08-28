@@ -22,7 +22,7 @@ export default class TaskCard extends Component {
     this.props.patchTask(newTaskValue, task.id)
   }
 
-  handlePatch = (newCategory, task) => {
+  handleCategoryPatch = (newCategory, task) => {
 
     let newCategoryObj = {
       category: newCategory
@@ -30,10 +30,11 @@ export default class TaskCard extends Component {
 
     let taskId = task.id
 
-    this.props.patchCategory(newCategoryObj, taskId)
+    this.props.patchTask(newCategoryObj, taskId)
+      .then(() => this.props.history.push(`/tasks/${newCategory}`))
   }
 
-  startEdit = (taskObj) => {
+  startEdit = () => {
     this.setState({
       collapse: !this.state.collapse,
       editing: !this.state.editing
@@ -63,7 +64,7 @@ export default class TaskCard extends Component {
       timestamp: newTimestamp
     }
 
-    this.props.editPatch(editedTaskObj, task.id)
+    this.props.patchTask(editedTaskObj, task.id)
   }
 
   buttonFunction = (taskObj) => {
@@ -92,7 +93,7 @@ export default class TaskCard extends Component {
           key={`${buttonValue}_Button_${this.props.task.id}`}
           size="sm"
           value={buttonValue}
-          onClick={() => this.handlePatch(buttonValue, this.props.task)}>{buttonLabel}</Button>
+          onClick={() => this.handleCategoryPatch(buttonValue, this.props.task)}>{buttonLabel}</Button>
 
       )
     })
