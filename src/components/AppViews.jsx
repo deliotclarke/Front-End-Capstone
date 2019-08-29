@@ -56,6 +56,7 @@ class AppViews extends Component {
     TaskManager.getAll()
       .then(tasks => {
         let toDelete = tasks.filter(task => { return task.selected === true })
+        // this creates an array of promised deletes
         let promisedDeletes = toDelete.map(task => { return TaskManager.deleteTask(task.id) })
         Promise.all(promisedDeletes)
           .then(() => TaskManager.getAll())
