@@ -14,7 +14,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 
 // Initialize Firebase & Rebase
 const app = firebase.initializeApp(firebaseConfig);
-const base = Rebase.createClass(app.database())
+const base = Rebase.createClass(app.database());
 
 ReactDOM.render(<App />, document.getElementById('root'));
 
