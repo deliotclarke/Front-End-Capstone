@@ -6,7 +6,7 @@
     "antd": "^3.19.2",
     "bootstrap": "^4.3.1",
     "firebase": "^6.4.2",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "re-base": "^4.0.0",
     "react": "^16.8.6",
     "react-bootstrap-sweetalert": "^4.4.1",
